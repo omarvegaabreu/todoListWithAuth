@@ -1,0 +1,33 @@
+{
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.6",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.7"
+  },
+  "name": "todolistwithAuth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "concurrently": "^6.2.1",
+    "nodemon": "^2.0.13"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "server":"nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omarvegaabreu/todoListWithAuth.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/omarvegaabreu/todoListWithAuth/issues"
+  },
+  "homepage": "https://github.com/omarvegaabreu/todoListWithAuth#readme",
+  "description": ""
+}

@@ -1,8 +1,6 @@
 const EXPRESS = require("express");
 const APP = EXPRESS();
-const DOTENV = require("dotenv");
-
-DOTENV.config();
+const DOTENV = DOTENV.config();
 
 const PORT = process.env.PORT || 3001;
 

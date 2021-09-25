@@ -1,5 +1,9 @@
 const EXPRESS = require("express");
 const APP = EXPRESS();
+const DOTENV = require("dotenv");
+
+DOTENV.config();
+
 const PORT = process.env.PORT || 3001;
 
 APP.get("/", (req, res) => res.send(`Server up and running on ${PORT}`));
@@ -14,4 +18,5 @@ APP.listen(PORT, (error) => {
   if (error) return console.log(`Error: ${error}`);
 
   console.log(`Server is listening on port ${PORT}`);
+  console.log(`Server is listening on port ${process.env.DB_USERNAME}`);
 });

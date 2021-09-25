@@ -1,10 +1,11 @@
-const EXPRESS = require("express");
-const ROUTER = EXPRESS.Router();
+const express = require("express");
+const router = express.Router();
+const User = require("../models/Users"); //user data
 
 //INITIAL PAGE PUBLIC ROUTE /api/users
 
-ROUTER.post("/", (req, res) => res.send("users.js"));
+router.post("/", (req, res) => res.send(req.body));
+// router.post("/", (req, res) => res.send("users.js"));
 
-ROUTER.post("/", (req, res) => res.send("users.js"));
-
-module.exports = ROUTER;
+//export to server.js
+module.exports = router;

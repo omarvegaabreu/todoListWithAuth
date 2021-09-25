@@ -1,8 +1,9 @@
-const EXPRESS = require("express");
-const ROUTER = EXPRESS.Router();
+const express = require("express");
+const router = express.Router();
 
 // AUTH REQUIRED NOT PUBLIC ROUTE ./api/todo
 
-ROUTER.post("/todo", (req, res) => res.send("todo.js"));
+router.post("/todo", (req, res) => res.send("todo.js"));
 
-module.exports = ROUTER;
+//export to server.js
+module.exports = router;

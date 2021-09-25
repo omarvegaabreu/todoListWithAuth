@@ -1,20 +1,32 @@
-const EXPRESS = require("express");
-const APP = EXPRESS();
-const DOTENV = DOTENV.config();
+//GLOBAL VARIABLES
+const express = require("express");
+const app = express();
+const dotenv = require("dotenv");
+const port = process.env.PORT || 3001;
 
-const PORT = process.env.PORT || 3001;
+//env config
+dotenv.config();
 
-APP.get("/", (req, res) => res.send(`Server up and running on ${PORT}`));
+//import database from config folder
+const mongoDB = require("./config/db");
 
-//ROUTES
-APP.use("/api/auth", require("./routes/auth"));
-APP.use("/api/todo", require("./routes/todo"));
-APP.use("/api/users", require("./routes/users"));
+//database connection
+mongoDB();
 
-//EXPRESS
-APP.listen(PORT, (error) => {
-  if (error) return console.log(`Error: ${error}`);
+//middleware
+app.use(express.json({ extended: false }));
 
-  console.log(`Server is listening on port ${PORT}`);
-  console.log(`Server is listening on port ${process.env.DB_USERNAME}`);
-});
+//API ROUTES
+app.get("/", (req, res) => res.json({ msg: "HI FROM API" }));
+app.use("/api/users", require("./routes/users"));
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/todo", require("./routes/todo"));
+
+//EXPRESS SERVER
+app.listen(port, (error) =>
+  error
+    ? console.log(error)
+    : console.log(
+        `Server is listening on port ${port} as ${process.env.DB_USERNAME} `
+      )
+);

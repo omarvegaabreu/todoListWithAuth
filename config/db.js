@@ -1,6 +1,26 @@
-const MONGOOSE = require("mongoose");
-require("dotenv").config({ path: "../.env" }); //PATH TO ENV
+//PATH TO ENV FILE
+require("dotenv").config({ path: "../.env" });
 
+//DATA BASE VARIABLES AND FUNCTION
+
+const mongoose = require("mongoose");
 const mongoURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.zst3r.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
-console.log(mongoURI);
+const connectDB = async () => {
+  try {
+    // Connect to the MongoDB cluster
+    await mongoose.connect(
+      mongoURI,
+      // { useNewUrlParser: true, useUnifiedTopology: true },
+      // using default options object
+      //There is no need for options object for this database at the current time.
+      //options info in docs https://mongoosejs.com/docs/api/mongoose.html
+      () => console.log(" mongoDB is connected")
+    );
+  } catch (e) {
+    console.log(`could not connect to database unexpected ${e}`);
+  }
+};
+
+//export to server.js
+module.exports = connectDB;

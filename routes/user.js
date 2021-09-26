@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User"); //user data
-const { check, validationResult } = require("express-validator"); //library docs //https://express-validator.github.io/docs/
-// const { findOne } = require("../models/User");
+const { check, validationResult } = require("express-validator"); //package docs //https://express-validator.github.io/docs/
 const bcrypt = require("bcryptjs"); //https://www.npmjs.com/package/bcryptjs
+const jwt = require("jsonwebtoken"); //  package docs https://jwt.io/
+const jwtSecret = process.env.JWT_SECRET; //secret code for JWT config for auth token
 
 //INITIAL PAGE PUBLIC ROUTE /api/users
 
@@ -45,13 +46,24 @@ router.post(
       user.password = await bcrypt.hash(password, salt);
 
       await user.save();
+
+      //payload is required by package to create token
+      const payload = { user: { id: user.id } };
+      //secret key is required by package manager to generate token
+      //this is information that will be sent to the client
+      //expires object should be set back for production code to 3600 one hour
+      jwt.sign(payload, jwtSecret, { expiresIn: 360000 }, (error, token) => {
+        if (error) {
+          throw error;
+        }
+        res.json({ token });
+      });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Server error");
     }
   }
 );
-// router.post("/", (req, res) => res.send("users.js"));
 
 //export to server.js
 module.exports = router;

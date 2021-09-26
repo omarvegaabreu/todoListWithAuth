@@ -4,7 +4,7 @@ require("dotenv").config({ path: "../.env" });
 //DATA BASE VARIABLES AND FUNCTION
 
 const mongoose = require("mongoose");
-const mongoURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.zst3r.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const mongoURI = `mongodb+srv://atlasadmin:${process.env.DB_PASSWORD}@todolistwithauth.zst3r.mongodb.net/todolistwithauth?retryWrites=true&w=majority`;
 
 const connectDB = async () => {
   try {

@@ -5,7 +5,7 @@ const { check, validationResult } = require("express-validator"); //package docs
 const bcrypt = require("bcryptjs"); //https://www.npmjs.com/package/bcryptjs
 const jwt = require("jsonwebtoken"); //  package docs https://jwt.io/
 const jwtSecret = process.env.JWT_SECRET; //secret code for JWT config for auth token
-const errorCheckResponse = require("../util/errorCheckResponse");
+// const errorCheckResponse = require("../util/errorCheckResponse");
 
 //INITIAL PAGE PUBLIC ROUTE /api/users
 
@@ -24,10 +24,10 @@ router.post(
 
     //checks res.body for response if error log error array or look at res.json
 
-    // if (!errors.isEmpty()) {
-    //   res.status(400).json({ errors: errors.array() });
-    // }
-    errorCheckResponse(errors, res); //from util folder to keep code DRY
+    if (!errors.isEmpty()) {
+      res.status(400).json({ errors: errors.array() });
+    }
+    // errorCheckResponse(errors, res); //from util folder to keep code DRY
 
     //user object received in response from mongodb atlas
     const { name, email, password } = req.body;

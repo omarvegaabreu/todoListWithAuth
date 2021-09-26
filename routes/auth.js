@@ -4,7 +4,7 @@ const { check, validationResult } = require("express-validator"); //package docs
 const bcrypt = require("bcryptjs"); //https://www.npmjs.com/package/bcryptjs
 const jwt = require("jsonwebtoken"); //  package docs https://jwt.io/
 const jwtSecret = process.env.JWT_SECRET; //secret code for JWT config for auth token
-const errorCheckResponse = require("../util/errorCheckResponse");
+// const errorCheckResponse = require("../util/errorCheckResponse");
 
 //PUBLIC ROUTE /api/auth
 // .GET user login information
@@ -14,7 +14,7 @@ router.get("/auth", (req, res) =>
 
 //.POST once user is logged in, get user information
 router.post(
-  "/auth",
+  "/",
   [
     check("email", "Please use a valid email.").isEmail(),
     check("password", "Passwords is required.").exists(),
@@ -22,26 +22,43 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req);
 
-    errorCheckResponse(errors, res); //helper function from util folder
+    //errorCheckResponse(errors, res); //helper function from util folder
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
 
     const { email, password } = req.body; //destructure req.body object
 
     try {
-      const user = await User.findOne({ email });
-      const passwordMatch = await bcrypt.compare(password, user.password);
+      // let user = await User.findOne({ email });
 
-      if (!user) {
-        return res.status(400).json({ msg: "Please use a valid email" });
+      let user = await User.find({ email: email });
+      if (!user || user.length == 0) {
+        return res.status(400).json({ msg: "Invalid credentials" });
       }
+      const isMatch = await bcrypt.compare(password, user[0].password);
 
-      if (!passwordMatch) {
+      // if (!user) {
+      //   return res.status(400).json({ msg: "Please use a valid email" });
+      // }
+
+      // const isMatch = await bcrypt.compare(password, user.password);
+
+      if (!isMatch) {
         return res
           .status(400)
           .json({ msg: "Invalid password, please try again." });
       }
 
       //payload is required by package to create token
-      const payload = { user: { id: user.id } };
+      // const payload = { user: { id: user.id } };
+
+      const payload = {
+        user: {
+          id: user[0]._id,
+        },
+      };
       //secret key is required by package manager to generate token
       //this is information that will be sent to the client
       //expires object should be set back for production code to 3600 one hour
@@ -52,7 +69,7 @@ router.post(
         res.json({ token });
       });
     } catch (error) {
-      console.error(err.message);
+      console.error(error.message);
       res.status(500).send("Server error");
     }
   }

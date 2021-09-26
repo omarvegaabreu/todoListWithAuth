@@ -1,87 +1,28 @@
-// const express = require("express");
-// const router = express.Router();
-// const User = require("../models/User"); //user data
-// const { check, validationResult } = require("express-validator"); //library docs //https://express-validator.github.io/docs/
-// // const { findOne } = require("../models/User");
-// const bcrypt = require("bcryptjs"); //https://www.npmjs.com/package/bcryptjs
-
-// //INITIAL PAGE PUBLIC ROUTE /api/users
-
-// router.post(
-//   "/",
-//   [
-//     check("name", "Please add name, it is required").not().isEmpty(),
-//     check("email", "Please use a valid email.").isEmail(),
-//     check(
-//       "password",
-//       "Passwords must be at least 6 characters in length."
-//     ).isLength({ min: 6 }),
-//   ],
-//   async (req, res) => {
-//     const errors = validationResult(req); //import express validator returns promise
-
-//     //checks res.body for name email and password
-//     if (!errors.isEmpty()) {
-//       res.status(400).json({ errors: errors.array() });
-//     }
-
-//     const { name, email, password } = req.body;
-
-//     try {
-//       let user = await User.findOne({ email });
-
-//       if (user) {
-//         return res.status(400).json({ msg: "User already exists" });
-//       }
-
-//       user = new User({
-//         name,
-//         email,
-//         password,
-//       });
-
-//       const salt = await bcrypt.genSalt(10);
-
-//       user.password = await bcrypt.hash(password, salt);
-
-//       await user.save();
-//     } catch (error) {
-//       console.error(error.message);
-//       res.status(500).send("Server error");
-//     }
-//   }
-// );
-// // router.post("/", (req, res) => res.send("users.js"));
-
-// //export to server.js
-// module.exports = router;
-
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const config = require("config");
-const { check, validationResult } = require("express-validator");
+const User = require("../models/User"); //user data
+const { check, validationResult } = require("express-validator"); //library docs //https://express-validator.github.io/docs/
+// const { findOne } = require("../models/User");
+const bcrypt = require("bcryptjs"); //https://www.npmjs.com/package/bcryptjs
 
-const User = require("../models/User");
+//INITIAL PAGE PUBLIC ROUTE /api/users
 
-// @route     POST api/users
-// @desc      Regiter a user
-// @access    Public
 router.post(
   "/",
   [
-    check("name", "Please add name").not().isEmpty(),
-    check("email", "Please include a valid email").isEmail(),
+    check("name", "Please add name, it is required").not().isEmpty(),
+    check("email", "Please use a valid email.").isEmail(),
     check(
       "password",
-      "Please enter a password with 6 or more characters"
+      "Passwords must be at least 6 characters in length."
     ).isLength({ min: 6 }),
   ],
   async (req, res) => {
-    const errors = validationResult(req);
+    const errors = validationResult(req); //import express validator returns promise
+
+    //checks res.body for name email and password
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      res.status(400).json({ errors: errors.array() });
     }
 
     const { name, email, password } = req.body;
@@ -104,29 +45,13 @@ router.post(
       user.password = await bcrypt.hash(password, salt);
 
       await user.save();
-
-      const payload = {
-        user: {
-          id: user.id,
-        },
-      };
-
-      jwt.sign(
-        payload,
-        config.get("jwtSecret"),
-        {
-          expiresIn: 360000,
-        },
-        (err, token) => {
-          if (err) throw err;
-          res.json({ token });
-        }
-      );
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Server Error");
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Server error");
     }
   }
 );
+// router.post("/", (req, res) => res.send("users.js"));
 
+//export to server.js
 module.exports = router;

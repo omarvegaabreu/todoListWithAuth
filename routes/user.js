@@ -21,11 +21,12 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req); //import express validator returns promise
 
-    //checks res.body for name email and password
+    //checks res.body for response if error log error array or look at res.json
     if (!errors.isEmpty()) {
       res.status(400).json({ errors: errors.array() });
     }
 
+    //user object received in response from mongodb atlas
     const { name, email, password } = req.body;
 
     try {

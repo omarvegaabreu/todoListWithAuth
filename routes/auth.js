@@ -8,7 +8,7 @@ const User = require("../models/User"); //user data
 // const errorCheckResponse = require("../util/errorCheckResponse");
 
 //PUBLIC ROUTE /api/auth
-// .GET user login information
+// .GET validate logged in user
 router.get("/", (req, res) => res.send("get user log in info from auth.js"));
 
 //.POST once user is logged in, get user information
@@ -20,9 +20,7 @@ router.post(
   ],
   async (req, res) => {
     const errors = validationResult(req);
-    console.log("errors line 22 " + errors);
-    //errorCheckResponse(errors, res); //helper function from util folder
-
+    console.log("errors array line 25 POST/API/AUTH " + errors);
     if (!errors.isEmpty()) {
       return res
         .status(400)
@@ -30,11 +28,13 @@ router.post(
     }
 
     const { email, password } = req.body; //destructure req.body object
+    console.log("email from auth line 31 " + email);
+    console.log("password from auth line 31 " + password);
 
     try {
       // let user = await User.findOne({ email });
 
-      let user = await User.find({ email: email });
+      let user = await User.find({ email });
       console.log("user auth line 35 " + user);
       if (!user || user.length == 0) {
         return res.status(400).json({ msg: "Invalid credentials" });
@@ -62,7 +62,7 @@ router.post(
         },
       };
 
-      console.log("auth line 61" + payload);
+      console.log("auth line 61 pay load" + payload.user.id);
       //secret key is required by package manager to generate token
       //this is information that will be sent to the client
       //expires object should be set back for production code to 3600 one hour

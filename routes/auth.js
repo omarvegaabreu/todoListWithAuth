@@ -9,9 +9,15 @@ const auth = require("../middleware/auth");
 // const errorCheckResponse = require("../util/errorCheckResponse");
 //PUBLIC ROUTE /api/auth
 // .GET validate logged in user
-router.get("/", auth, (req, res) =>
-  res.send("get user log in info from auth.js")
-);
+router.get("/", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    res.json(user);
+  } catch (error) {
+    console.error("Error line 17 routes/auth " + error.message);
+    res.status(500).send("Server error");
+  }
+});
 
 //.POST once user is logged in, get user information
 router.post(

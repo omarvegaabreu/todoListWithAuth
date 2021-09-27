@@ -5,6 +5,10 @@ const { check, validationResult } = require("express-validator"); //package docs
 const bcrypt = require("bcryptjs"); //https://www.npmjs.com/package/bcryptjs
 const jwt = require("jsonwebtoken"); //  package docs https://jwt.io/
 const jwtSecret = process.env.JWT_SECRET; //secret code for JWT config for auth token
+// console.log(jwtSecret);
+//PATH TO ENV FILE
+// require("dotenv").config({ path: "../" });
+
 // const errorCheckResponse = require("../util/errorCheckResponse");
 
 //INITIAL PAGE PUBLIC ROUTE /api/users

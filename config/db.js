@@ -1,5 +1,5 @@
 //PATH TO ENV FILE
-require("dotenv").config({ path: "../.env" });
+require("dotenv").config({ path: "../env" });
 
 //DATA BASE VARIABLES AND FUNCTION
 

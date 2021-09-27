@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken"); //  package docs https://jwt.io/
 const jwtSecret = process.env.JWT_SECRET; //secret code for JWT config for auth token
 const User = require("../models/User"); //user data
 // const errorCheckResponse = require("../util/errorCheckResponse");
-
 //PUBLIC ROUTE /api/auth
 // .GET validate logged in user
 router.get("/", (req, res) => res.send("get user log in info from auth.js"));

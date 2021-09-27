@@ -19,12 +19,10 @@ router.post(
     check("password", "Passwords is required.").exists(),
   ],
   async (req, res) => {
-    const errors = validationResult(req);
-    console.log("errors array line 25 POST/API/AUTH " + errors);
-    if (!errors.isEmpty()) {
-      return res
-        .status(400)
-        .json({ errors: "errors array line 26 " + errors.array() });
+    const errorObject = validationResult(req);
+    // console.log("errors array line 25 POST/API/AUTH " + { errorObject });
+    if (!errorObject.isEmpty()) {
+      return res.status(400).json({ errors: errorObject.array() });
     }
 
     const { email, password } = req.body; //destructure req.body object

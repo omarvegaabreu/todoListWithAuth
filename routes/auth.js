@@ -5,10 +5,13 @@ const bcrypt = require("bcryptjs"); //https://www.npmjs.com/package/bcryptjs
 const jwt = require("jsonwebtoken"); //  package docs https://jwt.io/
 const jwtSecret = process.env.JWT_SECRET; //secret code for JWT config for auth token
 const User = require("../models/User"); //user data
+const auth = require("../middleware/auth");
 // const errorCheckResponse = require("../util/errorCheckResponse");
 //PUBLIC ROUTE /api/auth
 // .GET validate logged in user
-router.get("/", (req, res) => res.send("get user log in info from auth.js"));
+router.get("/", auth, (req, res) =>
+  res.send("get user log in info from auth.js")
+);
 
 //.POST once user is logged in, get user information
 router.post(

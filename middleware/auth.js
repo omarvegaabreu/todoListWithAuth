@@ -1,3 +1,5 @@
+/**MIDDLEWARE TO PROTECT ROUTE, BRING INTO ROUTE YOU NEED OR WANT TO PROTECT. */
+
 const jwt = require("jsonwebtoken");
 
 const jwtSecret = process.env.JWT_SECRET;

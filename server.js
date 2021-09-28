@@ -17,7 +17,7 @@ mongoDB();
 app.use(express.json({ extended: false }));
 
 //API ROUTES
-app.get("/", (req, res) => res.json({ msg: "HI FROM API" }));
+app.get("/", (req, res) => res.json({ msg: "landing page" }));
 app.use("/api/users", require("./routes/user"));
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/todo", require("./routes/todo"));

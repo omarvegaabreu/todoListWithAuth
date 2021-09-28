@@ -5,11 +5,11 @@ const { check, validationResult } = require("express-validator"); //package docs
 const bcrypt = require("bcryptjs"); //https://www.npmjs.com/package/bcryptjs
 const jwt = require("jsonwebtoken"); //  package docs https://jwt.io/
 const jwtSecret = process.env.JWT_SECRET; //secret code for JWT config for auth token
+const error500 = require("../util/sendError500");
+//const errorCheckResponse = require("../util/errorCheckResponse");
 // console.log(jwtSecret);
 //PATH TO ENV FILE
 // require("dotenv").config({ path: "../" });
-
-// const errorCheckResponse = require("../util/errorCheckResponse");
 
 //INITIAL PAGE PUBLIC ROUTE /api/users
 
@@ -31,7 +31,7 @@ router.post(
     if (!errors.isEmpty()) {
       res.status(400).json({ errors: errors.array() });
     }
-    // errorCheckResponse(errors, res); //from util folder to keep code DRY
+    //errorCheckResponse(errors, res); //from util folder to keep code DRY
 
     //user object received in response from mongodb atlas
     const { name, email, password } = req.body;

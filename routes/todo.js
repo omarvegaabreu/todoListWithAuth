@@ -5,6 +5,7 @@ const auth = require("../middleware/auth"); //middleware to protect routes.
 /**Database */
 const Todo = require("../models/Todo"); //todo database
 const User = require("../models/User"); //user database
+const error500 = require("../util/sendError500");
 
 // AUTH REQUIRED NOT PUBLIC ROUTE ./api/todo
 //route api/todo
@@ -24,7 +25,30 @@ router.get("/", auth, async (req, res) => {
 //route api/todo
 //ADD todo
 //route is private
-router.post("/", (req, res) => res.send("add todo"));
+router.post(
+  "/",
+  [auth, [check("todo", "Todo is required").not().isEmpty()]],
+  async (req, res) => {
+    const errors = validationResult(req); //import express validator returns promise
+
+    //checks res.body for response if error log error array or look at res.json
+
+    if (!errors.isEmpty()) {
+      res.status(400).json({ errors: errors.array() });
+    }
+    //errorCheckResponse(errors, res); //from util folder to keep code DRY
+    const { user, todo, date } = req.body;
+    // console.log(todo);
+
+    try {
+      const newTodo = new Todo({ user: req.user.id, todo, date });
+      const todoAdded = await newTodo.save();
+      res.json(todoAdded);
+    } catch (error) {
+      error500(res, error);
+    }
+  }
+);
 
 // AUTH REQUIRED NOT PUBLIC ROUTE ./api/todo/:id
 //route api/todo

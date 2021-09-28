@@ -10,6 +10,10 @@ const TodoSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  todoDescription: {
+    type: String,
+    default: "",
+  },
   date: {
     type: Date,
     default: moment().format("MM/DD/YYYY"),

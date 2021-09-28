@@ -18,6 +18,7 @@ router.get("/", auth, async (req, res) => {
     console.log("ERROR ON LINE 17 TODO.JS ");
     console.error(error.message);
     res.status(500).send("Server error.");
+    // error500(res, error);
   }
 });
 
@@ -37,15 +38,24 @@ router.post(
       res.status(400).json({ errors: errors.array() });
     }
     //errorCheckResponse(errors, res); //from util folder to keep code DRY
-    const { user, todo, date } = req.body;
+    // console.log(req.body);
+    const { user, todo, date, todoDescription } = req.body;
     // console.log(todo);
 
     try {
-      const newTodo = new Todo({ user: req.user.id, todo, date });
+      const newTodo = new Todo({
+        user: req.user.id,
+        todo,
+        date,
+        todoDescription,
+      });
       const todoAdded = await newTodo.save();
       res.json(todoAdded);
     } catch (error) {
-      error500(res, error);
+      console.log("ERROR ON LINE 49 TODO.JS ");
+      console.error(error.message);
+      res.status(500).send("Server error.");
+      //error500(res, error);
     }
   }
 );

@@ -12,7 +12,6 @@ const TodoSchema = mongoose.Schema({
   },
   todoDescription: {
     type: String,
-    default: "",
   },
   date: {
     type: Date,

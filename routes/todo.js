@@ -67,14 +67,22 @@ router.post(
 //UPDATE todo
 //route is private
 router.put("/:id", auth, async (req, res) => {
+  console.log(req.body);
   const { user, todo, todoDescription, date } = req.body;
+  console.log(
+    "user " + user,
+    "todo " + todo,
+    "description " + todoDescription,
+    " date " + date
+  );
 
   const todoFields = {};
   //passes information to todoFields object
   if (user) todoFields.user = user;
-  if (todo) todoFields.user = user;
-  if (date) todoFields.user = user;
-  if (todoDescription) todoFields.user = user;
+  if (todo) todoFields.todo = todo;
+  if (date) todoFields.date = date;
+  if (todoDescription) todoFields.todoDescription = todoDescription;
+  console.log("todo fields " + todoFields);
 
   try {
     let todo = await TodoSchema.findById(req.params.id);

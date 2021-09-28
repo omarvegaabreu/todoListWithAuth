@@ -70,7 +70,7 @@ router.post(
         },
       };
 
-      console.log("auth line 61 pay load" + payload.user.id);
+      console.log("auth line 73 pay load" + payload.user.id);
       //secret key is required by package manager to generate token
       //this is information that will be sent to the client
       //expires object should be set back for production code to 3600 one hour

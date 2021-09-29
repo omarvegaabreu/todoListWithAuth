@@ -111,7 +111,30 @@ router.put("/:id", auth, async (req, res) => {
 //route api/todo
 //DELETE todo
 //route is private
-router.delete("/:id", (req, res) => res.send("delete todo"));
+router.delete("/:id", auth, async (req, res) => {
+  try {
+    let todo = await TodoSchema.findById(req.params.id);
+    if (!todo) return res.status(404).json({ msg: "Todo not found" });
+    //check if user owns account
+    if (todo.user.toString() !== req.user.id) {
+      return res.status(404).json({ msg: "Request not authorized." });
+    }
+
+    // todo = await TodoSchema.findByIdAndUpdate(
+    //   req.params.id,
+    //   { $set: todoFields },
+    //   { new: true }
+    // );
+    await TodoSchema.findByIdAndRemove(req.params.id);
+
+    res.json({ msg: "Todo Removed" });
+  } catch (error) {
+    console.log("ERROR ON LINE 132 TODO.JS ");
+    console.error(error.message);
+    res.status(500).send("Server error.");
+    //error500(res, error);
+  }
+});
 
 //export to server.js
 module.exports = router;

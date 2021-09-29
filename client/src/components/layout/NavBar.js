@@ -1,3 +1,4 @@
+import React from "react";
 import PropTypes from "prop-types";
 
 const NavBar = ({ title, icon }) => {
@@ -18,6 +19,8 @@ NavBar.propTypes = {
 
 //Default Props
 NavBar.defaultProps = {
-  title: "Todo0",
-  icon: "fa-list-ul",
+  title: " Todo",
+  icon: "fa fa-th-list ",
 };
+
+export default NavBar;

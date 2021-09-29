@@ -5,9 +5,9 @@ const { check, validationResult } = require("express-validator"); //package docs
 const bcrypt = require("bcryptjs"); //https://www.npmjs.com/package/bcryptjs
 const jwt = require("jsonwebtoken"); //  package docs https://jwt.io/
 const jwtSecret = process.env.JWT_SECRET; //secret code for JWT config for auth token
-const error500 = require("../util/sendError500");
-//const errorCheckResponse = require("../util/errorCheckResponse");
-// console.log(jwtSecret);
+//const error500 = require("../util/sendError500"); helper function to keep code DRY need to implement when refactoring code
+//const errorCheckResponse = require("../util/errorCheckResponse"); need to implement when refactoring code
+
 //PATH TO ENV FILE
 // require("dotenv").config({ path: "../" });
 
@@ -31,7 +31,8 @@ router.post(
     if (!errors.isEmpty()) {
       res.status(400).json({ errors: errors.array() });
     }
-    //errorCheckResponse(errors, res); //from util folder to keep code DRY
+
+    //errorCheckResponse(errors, res); need to check for errors before implementing
 
     //user object received in response from mongodb atlas
     const { name, email, password } = req.body;
@@ -67,6 +68,7 @@ router.post(
         res.json({ token });
       });
     } catch (error) {
+      // error500(res, error); need to check for errors before implementing
       console.error(error.message);
       res.status(500).send("Server error");
     }

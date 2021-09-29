@@ -1,5 +1,6 @@
 /**to keep code dry, no need for it now, will document if implemented */
-
+/**CHECK FOR MISSING INFORMATION FROM REQUESTS TO API HELPER FUNCTION */
+const { validationResult } = require("express-validator"); //package docs //https://express-validator.github.io/docs/
 const errorCheckResponse = (errors, res) => {
   const errors = validationResult(req); //import express validator returns promise
 
@@ -8,7 +9,6 @@ const errorCheckResponse = (errors, res) => {
   if (!errors.isEmpty()) {
     res.status(400).json({ errors: errors.array() });
   }
-  //errorCheckResponse(errors, res); //from util folder to keep code DRY
 };
 
 module.exports = errorCheckResponse;

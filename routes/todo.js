@@ -5,7 +5,7 @@ const auth = require("../middleware/auth"); //middleware to protect routes.
 /**Database */
 const TodoSchema = require("../models/Todo"); //todo database
 const User = require("../models/User"); //user database
-const error500 = require("../util/sendError500");
+// const error500 = require("../util/sendError500"); HELPER FUNCTION NEED TO CHECK FOR ERRORS BEFORE IMPLEMENTING
 
 // AUTH REQUIRED NOT PUBLIC ROUTE ./api/todo
 //route api/todo
@@ -17,10 +17,10 @@ router.get("/", auth, async (req, res) => {
     });
     res.json(todo);
   } catch (error) {
-    console.log("ERROR ON LINE 17 TODO.JS ");
+    // console.log("ERROR ON LINE 17 TODO.JS ");
     console.error(error.message);
     res.status(500).send("Server error.");
-    // error500(res, error);
+    // error500(res, error); NEED TO CHECK FOR ERRORS BEFORE IMPLEMENTING
   }
 });
 
@@ -39,7 +39,7 @@ router.post(
     if (!errors.isEmpty()) {
       res.status(400).json({ errors: errors.array() });
     }
-    //errorCheckResponse(errors, res); //from util folder to keep code DRY
+    //errorCheckResponse(errors, res);NEED TO CHECK FOR ERRORS BEFORE IMPLEMENTING
     // console.log(req.body);
     const { user, todo, date, todoDescription } = req.body;
     // console.log(req.body);
@@ -57,7 +57,7 @@ router.post(
       console.log("ERROR ON LINE 49 TODO.JS ");
       console.error(error.message);
       res.status(500).send("Server error.");
-      //error500(res, error);
+      //error500(res, error);NEED TO CHECK FOR ERRORS BEFORE IMPLEMENTING
     }
   }
 );
@@ -69,20 +69,20 @@ router.post(
 router.put("/:id", auth, async (req, res) => {
   console.log(req.body);
   const { user, todo, todoDescription, date } = req.body;
-  console.log(
-    "user " + user,
-    "todo " + todo,
-    "description " + todoDescription,
-    " date " + date
-  );
+  // console.log(
+  //   "user " + user,
+  //   "todo " + todo,
+  //   "description " + todoDescription,
+  //   " date " + date
+  // );
 
   const todoFields = {};
-  //passes information to todoFields object
+  //creates todoFields object
   if (user) todoFields.user = user;
   if (todo) todoFields.todo = todo;
   if (date) todoFields.date = date;
   if (todoDescription) todoFields.todoDescription = todoDescription;
-  console.log("todo fields " + todoFields);
+  // console.log("todo fields " + todoFields); check if todoFields is receiving information.
 
   try {
     let todo = await TodoSchema.findById(req.params.id);
@@ -100,7 +100,7 @@ router.put("/:id", auth, async (req, res) => {
 
     res.json({ todo });
   } catch (error) {
-    console.log("ERROR ON LINE 49 TODO.JS ");
+    // console.log("ERROR ON LINE 49 TODO.JS ");
     console.error(error.message);
     res.status(500).send("Server error.");
     //error500(res, error);
@@ -129,7 +129,7 @@ router.delete("/:id", auth, async (req, res) => {
 
     res.json({ msg: "Todo Removed" });
   } catch (error) {
-    console.log("ERROR ON LINE 132 TODO.JS ");
+    // console.log("ERROR ON LINE 132 TODO.JS ");
     console.error(error.message);
     res.status(500).send("Server error.");
     //error500(res, error);

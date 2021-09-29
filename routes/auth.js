@@ -34,26 +34,18 @@ router.post(
     }
 
     const { email, password } = req.body; //destructure req.body object
-    console.log("email from auth line 31 " + email);
-    console.log("password from auth line 31 " + password);
+    // console.log("email from auth line 31 " + email);
+    // console.log("password from auth line 31 " + password);
 
     try {
-      // let user = await User.findOne({ email });
-
       let user = await User.find({ email });
-      console.log("user auth line 35 " + user);
+      // console.log("user auth line 35 " + user);
       if (!user || user.length == 0) {
         return res
           .status(400)
           .json({ msg: "Please check your email, and try again" });
       }
       const isMatch = await bcrypt.compare(password, user[0].password);
-
-      // if (!user) {
-      //   return res.status(400).json({ msg: "Please use a valid email" });
-      // }
-
-      // const isMatch = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {
         return res
@@ -70,7 +62,8 @@ router.post(
         },
       };
 
-      console.log("auth line 73 pay load" + payload.user.id);
+      // console.log("auth line 73 pay load" + payload.user.id);
+
       //secret key is required by package manager to generate token
       //this is information that will be sent to the client
       //expires object should be set back for production code to 3600 one hour
@@ -81,7 +74,7 @@ router.post(
         res.json({ token });
       });
     } catch (error) {
-      console.error("auth js line 70 " + error.message);
+      // console.error("auth js line 70 " + error.message);
       res.status(500).send("Server error");
     }
   }

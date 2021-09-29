@@ -50,6 +50,7 @@ const TodoState = (props) => {
   //filter todo
 
   //clear filter
+
   return (
     <TodoContext.Provider
       value={{

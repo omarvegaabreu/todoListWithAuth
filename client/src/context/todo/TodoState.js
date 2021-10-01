@@ -25,7 +25,7 @@ const TodoState = (props) => {
       {
         id: 2,
         todo: "second",
-        todoDescription: "second todo",
+        todoDescription: "",
       },
       {
         id: 3,

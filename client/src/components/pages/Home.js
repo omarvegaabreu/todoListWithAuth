@@ -1,10 +1,14 @@
 import React from "react";
-import Todos from "../todos/todos";
+import Todos from "../todos/Todo";
 
 const Home = () => {
   return (
-    <div>
-      <Todos />
+    <div className="grid-2">
+      <div>{/* <TodoForm /> */}</div>
+      <div>
+        {" "}
+        <Todos />
+      </div>
     </div>
   );
 };

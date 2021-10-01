@@ -38,7 +38,10 @@ const TodoState = (props) => {
   const [state, dispatch] = useReducer(todoReducer, initialState);
 
   //Add todo
-
+  const addTodo = (todo) => {
+    todo.id = uuidv4();
+    dispatch({ type: ADD_TODO, payload: todo });
+  };
   //Delete todo
 
   //set current todo

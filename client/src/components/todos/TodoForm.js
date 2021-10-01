@@ -17,17 +17,17 @@ export const TodoForms = () => {
 
   // console.log(todos);
 
-  const onSubmit = (e) => {
+  const onFormSubmit = (e) => {
     e.prevent.default();
-
-    todoContext.addTodo(todos);//will add todo to app state
-
-    setTodo({ todo: "", //will reset component state
-    todoDescription: "",
-  })
+    todoContext.addTodo(todos);
+    setTodo({
+      todo: "", //[e.target.name]
+      todoDescription: "", //e.target.value
+    });
+  };
 
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={onFormSubmit}>
       <Form.Field>
         <label>Title</label>
         <input

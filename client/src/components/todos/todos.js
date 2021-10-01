@@ -3,11 +3,13 @@ import TodoContext from "../../context/todo/todoContext";
 
 const Todos = () => {
   const todoContext = useContext(TodoContext);
+  const { todo } = todoContext;
 
+  // console.log(todo);
   return (
     <Fragment>
-      {todoContext.map((todo) => {
-        return <h3>{todo.name}</h3>;
+      {todo.map((label) => {
+        return <h3>{label.todo}</h3>;
       })}
     </Fragment>
   );

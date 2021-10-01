@@ -53,9 +53,12 @@ const TodoState = (props) => {
 
   return (
     <TodoContext.Provider
-      value={{
-        todo: state.todo,
-      }}
+      value={
+        {
+          todo: state.todos,
+        }
+        // console.log(state.todos))
+      }
     >
       {props.children}
     </TodoContext.Provider>

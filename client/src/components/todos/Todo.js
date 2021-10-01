@@ -1,5 +1,6 @@
 import React, { Fragment, useContext } from "react";
 import TodoContext from "../../context/todo/todoContext";
+import TodoItem from "./TodoItem";
 import { v4 as uuidv4 } from "uuid";
 
 const Todos = () => {
@@ -9,9 +10,10 @@ const Todos = () => {
   // console.log(todo);
   return (
     <Fragment>
-      {todo.map((label) => {
-        return <h3 key={uuidv4()}>{label.todo}</h3>;
+      {todo.map((todosObject) => {
+        return <TodoItem key={todosObject.id} todos={todosObject} />;
       })}
+      <div> another div</div>
     </Fragment>
   );
 };

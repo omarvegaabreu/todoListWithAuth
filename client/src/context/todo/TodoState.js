@@ -39,6 +39,7 @@ const TodoState = (props) => {
 
   //Add todo
   const addTodo = (todo) => {
+    console.log("add todo todo state");
     todo.id = uuidv4();
     dispatch({ type: ADD_TODO, payload: todo });
   };
@@ -59,6 +60,7 @@ const TodoState = (props) => {
       value={
         {
           todo: state.todos,
+          addTodo,
         }
         // console.log(state.todos))
       }

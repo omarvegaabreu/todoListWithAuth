@@ -17,7 +17,7 @@ export default (state, action) => {
     case ADD_TODO:
       return {
         ...state,
-        contacts: [action.payload, ...state.todos],
+        todos: [action.payload, ...state.todos] /***todo or todos? */,
         loading: false,
       };
 

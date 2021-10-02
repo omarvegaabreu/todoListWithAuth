@@ -22,7 +22,7 @@ export const TodoForms = () => {
     // console.log("line 23 Todoform.js " + todos);
 
     try {
-      todoContext.addTodo("todo");
+      todoContext.addTodo(todo);
     } catch (error) {
       console.log(error);
     }

@@ -39,8 +39,8 @@ const TodoState = (props) => {
 
   //Add todo
   const addTodo = (todo) => {
-    console.log("add todo todo state");
-    todo.id = uuidv4();
+    console.log(todo);
+    //todo.id = uuidv4();
     dispatch({ type: ADD_TODO, payload: todo });
   };
   //Delete todo

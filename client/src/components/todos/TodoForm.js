@@ -41,7 +41,7 @@ export const TodoForms = () => {
   return (
     <Form onSubmit={onFormSubmit}>
       <Form.Field>
-        <label>Add Todo</label>
+        <label>Add To-do</label>
         <input
           placeholder="name your todo"
           value={todo}

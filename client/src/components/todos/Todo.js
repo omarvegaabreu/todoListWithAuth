@@ -13,7 +13,6 @@ const Todos = () => {
       {todo.map((todosObject) => {
         return <TodoItem key={todosObject.id} todos={todosObject} />;
       })}
-      <div> another div</div>
     </Fragment>
   );
 };

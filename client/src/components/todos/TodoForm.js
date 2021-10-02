@@ -23,7 +23,7 @@ export const TodoForms = () => {
     // console.log(e);
     e.preventDefault();
     // console.log("line 23 Todoform.js " + todos);
-    todoContext.addTodo({ todo, todoDescription });
+    todoContext.addTodo({ id: uuidv4(), todo, todoDescription });
     // try {
     //   todoContext.addTodo(todo);
     // } catch (error) {

@@ -17,11 +17,9 @@ export default (state, action) => {
     case ADD_TODO:
       return {
         ...state,
-        TODOs: [action.payload, ...state.TODOs],
+        contacts: [action.payload, ...state.todos],
         loading: false,
       };
-
-    //break;
 
     default:
       break;

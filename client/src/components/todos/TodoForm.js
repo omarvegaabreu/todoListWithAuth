@@ -4,7 +4,7 @@ import { Button, Checkbox, Form } from "semantic-ui-react";
 
 export const TodoForms = () => {
   const todoContext = useContext(TodoContext);
-  // console.log(todoContext);
+  // console.log(todoContext); passing object
 
   const [todos, setTodo] = useState({
     todo: "", //[e.target.name]
@@ -21,12 +21,12 @@ export const TodoForms = () => {
     // console.log(e);
     e.preventDefault();
     // console.log("line 23 Todoform.js " + todos);
-    todoContext.addTodo(todos);
+    // todoContext.addTodo(todos); /************************* */
     setTodo({
       todo: "", //[e.target.name]
       todoDescription: "", //e.target.value
     });
-    console.log(todos);
+    // console.log(todos);
   };
 
   return (

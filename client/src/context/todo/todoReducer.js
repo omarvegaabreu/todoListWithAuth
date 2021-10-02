@@ -13,6 +13,8 @@ import {
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state, action) => {
+  // console.log(state);
+  // console.log("todo reducer");
   switch (action.type) {
     case ADD_TODO:
       return {

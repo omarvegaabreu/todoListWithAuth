@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { v4 as uuidv4 } from "uuid";
+//import { v4 as uuidv4 } from "uuid";
 import TodoContext from "./todoContext";
 import todoReducer from "./todoReducer";
 import {
@@ -39,8 +39,8 @@ const TodoState = (props) => {
 
   //Add todo
   const addTodo = (todo) => {
-    console.log(todo);
-    //todo.id = uuidv4();
+    // console.log(todo);
+    // todo.id = uuidv4();
     dispatch({ type: ADD_TODO, payload: todo });
   };
   //Delete todo

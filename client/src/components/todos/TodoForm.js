@@ -7,7 +7,7 @@ export const TodoForms = () => {
   const todoContext = useContext(TodoContext);
 
   const [todos, setTodo] = useState({
-    id: uuidv4() /****ADDED SHOULD NOT BE THERE MAYBE */,
+    // id: uuidv4() /****ADDED SHOULD NOT BE THERE MAYBE */,
     todo: "", //[e.target.name]
     todoDescription: "", //e.target.value
   });
@@ -16,29 +16,32 @@ export const TodoForms = () => {
   const onChange = (e) =>
     setTodo({ ...todos, [e.target.name]: e.target.value });
 
-  // console.log(todos);
+  console.log(todos);
+  // console.log(todoDescription);
 
   const onFormSubmit = (e) => {
     // console.log(e);
     e.preventDefault();
     // console.log("line 23 Todoform.js " + todos);
-
-    try {
-      todoContext.addTodo(todo);
-    } catch (error) {
-      console.log(error);
-    }
+    todoContext.addTodo({ todo, todoDescription });
+    // try {
+    //   todoContext.addTodo(todo);
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    console.log(todo);
     setTodo({
       todo: "", //[e.target.name]
       todoDescription: "", //e.target.value
     });
-    // console.log(todos);
+    //   console.log(todos.todo);
+    //   console.log(todos.todoDescription);
   };
 
   return (
     <Form onSubmit={onFormSubmit}>
       <Form.Field>
-        <label>Title</label>
+        <label>Add Todo</label>
         <input
           placeholder="name your todo"
           value={todo}
@@ -47,7 +50,7 @@ export const TodoForms = () => {
         />
       </Form.Field>
       <Form.Field>
-        <label>Description</label>
+        <label>Add Description</label>
         <input
           placeholder="describe what you will be doing"
           value={todoDescription}

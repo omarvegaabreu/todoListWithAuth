@@ -16,7 +16,7 @@ export const TodoForms = () => {
   const onChange = (e) =>
     setTodo({ ...todos, [e.target.name]: e.target.value });
 
-  console.log(todos);
+  // console.log(todos);
   // console.log(todoDescription);
 
   const onFormSubmit = (e) => {

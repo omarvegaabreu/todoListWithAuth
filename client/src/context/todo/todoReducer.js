@@ -22,11 +22,6 @@ export default (state, action) => {
         todos: [action.payload, ...state.todos] /***todo or todos? */,
         loading: false,
       };
-    case DELETE_TODO:
-      return {
-        ...state,
-        todos: state.todos.filter((todo) => todo.id !== action.payload),
-      };
 
     default:
       break;

@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export const TodoForms = () => {
   const todoContext = useContext(TodoContext);
-  const { addTodo, current, clearCurrent } = todoContext;
+  const { addTodo, current, clearCurrent, updateTodo } = todoContext;
 
   useEffect(() => {
     if (current !== null && current !== undefined) {
@@ -28,9 +28,12 @@ export const TodoForms = () => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-
-    addTodo({ id: uuidv4(), todo, todoDescription });
-
+    if (current === null && current !== undefined) {
+      addTodo({ id: uuidv4(), todo, todoDescription });
+    } else {
+      updateTodo(todo);
+    }
+    // once conditions are met will clear form
     setTodo({
       todo: "", //[e.target.name]
       todoDescription: "", //e.target.value

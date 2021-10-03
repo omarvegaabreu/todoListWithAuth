@@ -20,7 +20,13 @@ export default (state, action) => {
       return {
         ...state,
         todos: [action.payload, ...state.todos] /***todo or todos? */,
-        loading: false,
+      };
+    case UPDATE_TODO:
+      return {
+        ...state,
+        todos: state.todos.map((todo) => {
+          return todo.id === action.payload.id ? action.payload.todo : todo;
+        }) /***todo or todos? */,
       };
     case DELETE_TODO:
       return {

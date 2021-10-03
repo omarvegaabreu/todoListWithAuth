@@ -7,12 +7,16 @@ export const TodoItem = ({ todos }) => {
 
   const todoContext = useContext(TodoContext);
 
-  const { deleteTodo } = todoContext;
+  const { deleteTodo, setCurrent, clearCurrent } = todoContext;
 
   const onDelete = () => {
     deleteTodo(id);
+    clearCurrent();
   };
 
+  const onEdit = () => {
+    setCurrent(todos);
+  };
   return (
     <Card className="card bg-light">
       <Card.Content>
@@ -24,8 +28,8 @@ export const TodoItem = ({ todos }) => {
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
-          <Button basic color="green" onClick={onDelete}>
-            Completed
+          <Button basic color="green" onClick={onEdit}>
+            Edit
           </Button>
           <Button basic color="red" onClick={onDelete}>
             Delete

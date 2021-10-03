@@ -33,6 +33,7 @@ const TodoState = (props) => {
         todoDescription: "third todo",
       },
     ],
+    current: null,
   };
 
   const [state, dispatch] = useReducer(todoReducer, initialState);

@@ -39,7 +39,7 @@ export const TodoForms = () => {
   return (
     <Form onSubmit={onFormSubmit}>
       <Form.Field>
-        <label>Add Todo</label>
+        <label>{current === null ? "Add To-Do" : "Edit to-do"}</label>
         <input
           placeholder="name your todo"
           value={todo}
@@ -48,7 +48,11 @@ export const TodoForms = () => {
         />
       </Form.Field>
       <Form.Field>
-        <label>Add Description</label>
+        <label>
+          {current === null
+            ? "Add To-Do description"
+            : "Edit to-do description"}
+        </label>
         <input
           placeholder="describe what you will be doing"
           value={todoDescription}
@@ -57,7 +61,7 @@ export const TodoForms = () => {
         />
       </Form.Field>
       <Button type="submit" basic color="blue">
-        Submit
+        {current === null ? "Submit" : "Edit"}
       </Button>
     </Form>
   );

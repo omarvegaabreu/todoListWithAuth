@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export const TodoForms = () => {
   const todoContext = useContext(TodoContext);
+  const { addTodo, setCurrent } = todoContext;
 
   const [todos, setTodo] = useState({
     // id: uuidv4() /****ADDED SHOULD NOT BE THERE MAYBE */,
@@ -19,7 +20,7 @@ export const TodoForms = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
 
-    todoContext.addTodo({ id: uuidv4(), todo, todoDescription });
+    addTodo({ id: uuidv4(), todo, todoDescription });
 
     setTodo({
       todo: "", //[e.target.name]

@@ -54,6 +54,7 @@ const TodoState = (props) => {
     console.log(todo);
     console.log(description);
     dispatch({ type: SET_CURRENT, payload: todo });
+    /********************* ONLY GETTING TODO NOT DESCRIPTION IN OBJECT */
   };
 
   //clear current todo

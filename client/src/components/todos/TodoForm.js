@@ -10,9 +10,6 @@ export const TodoForms = () => {
   useEffect(() => {
     if (current !== null && current !== undefined) {
       setTodo(current);
-      console.log("****************************");
-      console.log(current);
-      console.log("****************************");
     } else {
       setTodo({ todo: "", todoDescription: "" });
     }
@@ -33,20 +30,21 @@ export const TodoForms = () => {
     e.preventDefault();
     if (current === null && current !== undefined) {
       addTodo({
+        /*****************************************************future bug with id */
         id: uuidv4(),
         todo,
         todoDescription,
-      }); /*****************************************************future bug with id */
+      });
     } else {
-      console.log("todo for update");
-      updateTodo(todo); /************************************************bug */
-      console.log("****************************");
+      // console.log(current);
+      updateTodo(current);
     }
     // once conditions are met will clear form
-    setTodo({
-      todo: "", //[e.target.name]
-      todoDescription: "", //e.target.value
-    });
+    // setTodo({
+    //   todo: "", //[e.target.name]
+    //   todoDescription: "", //e.target.value
+    // });
+    clearCurrent();
   };
 
   const onClearCurrent = () => {

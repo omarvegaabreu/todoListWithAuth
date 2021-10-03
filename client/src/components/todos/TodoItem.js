@@ -24,8 +24,8 @@ export const TodoItem = ({ todos }) => {
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
-          <Button basic color="green">
-            Edit
+          <Button basic color="green" onClick={onDelete}>
+            Completed
           </Button>
           <Button basic color="red" onClick={onDelete}>
             Delete

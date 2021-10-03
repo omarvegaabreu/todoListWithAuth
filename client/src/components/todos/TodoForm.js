@@ -16,26 +16,15 @@ export const TodoForms = () => {
   const onChange = (e) =>
     setTodo({ ...todos, [e.target.name]: e.target.value });
 
-  // console.log(todos);
-  // console.log(todoDescription);
-
   const onFormSubmit = (e) => {
-    // console.log(e);
     e.preventDefault();
-    // console.log("line 23 Todoform.js " + todos);
+
     todoContext.addTodo({ id: uuidv4(), todo, todoDescription });
-    // try {
-    //   todoContext.addTodo(todo);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    // console.log(todo);
+
     setTodo({
       todo: "", //[e.target.name]
       todoDescription: "", //e.target.value
     });
-    //   console.log(todos.todo);
-    //   console.log(todos.todoDescription);
   };
 
   return (

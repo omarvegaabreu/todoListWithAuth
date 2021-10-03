@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import TodoContext from "../../context/todo/todoContext";
-import { Button, Checkbox, Form } from "semantic-ui-react";
+import { Button, Form } from "semantic-ui-react";
 import { v4 as uuidv4 } from "uuid";
 
 export const TodoForms = () => {
@@ -29,7 +29,7 @@ export const TodoForms = () => {
     // } catch (error) {
     //   console.log(error);
     // }
-    console.log(todo);
+    // console.log(todo);
     setTodo({
       todo: "", //[e.target.name]
       todoDescription: "", //e.target.value

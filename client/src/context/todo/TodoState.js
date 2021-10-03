@@ -40,19 +40,21 @@ const TodoState = (props) => {
 
   //Add todo
   const addTodo = (todo) => {
-    // console.log(todo);
-    // todo.id = uuidv4();
     dispatch({ type: ADD_TODO, payload: todo });
   };
   //Delete todo
   const deleteTodo = (id) => {
-    // console.log(todo);
-    // todo.id = uuidv4();
     dispatch({ type: DELETE_TODO, payload: id });
   };
   //set current todo
+  const setCurrent = (todo) => {
+    dispatch({ type: SET_CURRENT, payload: todo });
+  };
 
   //clear current todo
+  const clearCurrent = (todo) => {
+    dispatch({ type: SET_CURRENT });
+  };
 
   //update todo
 
@@ -65,8 +67,11 @@ const TodoState = (props) => {
       value={
         {
           todo: state.todos,
+          current: state.current,
           addTodo,
           deleteTodo,
+          setCurrent,
+          clearCurrent,
         }
         // console.log(state.todos))
       }

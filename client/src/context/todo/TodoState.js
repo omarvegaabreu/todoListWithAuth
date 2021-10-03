@@ -40,24 +40,30 @@ const TodoState = (props) => {
 
   //Add todo
   const addTodo = (todo) => {
+    console.log("add todo " + todo);
     dispatch({ type: ADD_TODO, payload: todo });
   };
   //Delete todo
   const deleteTodo = (id) => {
+    console.log("add id " + id);
     dispatch({ type: DELETE_TODO, payload: id });
   };
-  //set current todo
-  const setCurrent = (todo) => {
+  //set current todo /*****************************************BUG IS HERE */
+  const setCurrent = ({ todo, description }) => {
+    /********************* ONLY GETTING TODO NOT DESCRIPTION IN OBJECT */
+    console.log(todo);
+    console.log(description);
     dispatch({ type: SET_CURRENT, payload: todo });
   };
 
   //clear current todo
-  const clearCurrent = (todo) => {
+  const clearCurrent = () => {
     dispatch({ type: SET_CURRENT });
   };
 
   //update todo
   const updateTodo = (todo) => {
+    console.log("update " + todo);
     dispatch({ type: UPDATE_TODO, payload: todo });
   };
 

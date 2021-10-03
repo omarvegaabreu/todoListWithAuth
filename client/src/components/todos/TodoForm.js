@@ -10,6 +10,9 @@ export const TodoForms = () => {
   useEffect(() => {
     if (current !== null && current !== undefined) {
       setTodo(current);
+      console.log("****************************");
+      console.log(current);
+      console.log("****************************");
     } else {
       setTodo({ todo: "", todoDescription: "" });
     }
@@ -31,7 +34,9 @@ export const TodoForms = () => {
     if (current === null && current !== undefined) {
       addTodo({ id: uuidv4(), todo, todoDescription });
     } else {
+      console.log("todo for update");
       updateTodo(todo);
+      console.log("****************************");
     }
     // once conditions are met will clear form
     setTodo({
@@ -57,7 +62,7 @@ export const TodoForms = () => {
       </Form.Field>
       <Form.Field>
         <label>
-          {current === null
+          {current === null && current !== undefined
             ? "Add To-Do description"
             : "Edit to-do description"}
         </label>

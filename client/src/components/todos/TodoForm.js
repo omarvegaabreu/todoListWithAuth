@@ -5,10 +5,10 @@ import { v4 as uuidv4 } from "uuid";
 
 export const TodoForms = () => {
   const todoContext = useContext(TodoContext);
-  const { addTodo, current } = todoContext;
+  const { addTodo, current, clearCurrent } = todoContext;
 
   useEffect(() => {
-    if (current !== null) {
+    if (current !== null && current !== undefined) {
       setTodo(current);
     } else {
       setTodo({ todo: "", todoDescription: "" });
@@ -22,6 +22,7 @@ export const TodoForms = () => {
   });
 
   const { todo, todoDescription } = todos;
+
   const onChange = (e) =>
     setTodo({ ...todos, [e.target.name]: e.target.value });
 
@@ -34,6 +35,10 @@ export const TodoForms = () => {
       todo: "", //[e.target.name]
       todoDescription: "", //e.target.value
     });
+  };
+
+  const onClearCurrent = () => {
+    clearCurrent();
   };
 
   return (
@@ -63,6 +68,12 @@ export const TodoForms = () => {
       <Button type="submit" basic color="blue">
         {current === null ? "Submit" : "Edit"}
       </Button>
+
+      {current ? (
+        <Button type="cancel" basic color="blue" onClick={onClearCurrent}>
+          Cancel Edit
+        </Button>
+      ) : undefined}
     </Form>
   );
 };

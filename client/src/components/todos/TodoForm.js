@@ -1,11 +1,19 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import TodoContext from "../../context/todo/todoContext";
 import { Button, Form } from "semantic-ui-react";
 import { v4 as uuidv4 } from "uuid";
 
 export const TodoForms = () => {
   const todoContext = useContext(TodoContext);
-  const { addTodo, setCurrent } = todoContext;
+  const { addTodo, current } = todoContext;
+
+  useEffect(() => {
+    if (current !== null) {
+      setTodo(current);
+    } else {
+      setTodo({ todo: "", todoDescription: "" });
+    }
+  }, [todoContext, current]);
 
   const [todos, setTodo] = useState({
     // id: uuidv4() /****ADDED SHOULD NOT BE THERE MAYBE */,

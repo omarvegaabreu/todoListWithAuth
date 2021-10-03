@@ -13,10 +13,6 @@ import {
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state, action) => {
-  // console.log(state);
-  // console.log(action);
-  // console.log("todo reducer");
-
   switch (action.type) {
     case ADD_TODO:
       return {
@@ -27,7 +23,6 @@ export default (state, action) => {
       return {
         ...state,
         todos: state.todos.map((todo) => {
-          console.log(todo);
           return todo.id === action.payload.id ? action.payload.todo : todo;
         }) /***todo or todos? */,
       };
@@ -37,6 +32,7 @@ export default (state, action) => {
         todos: state.todos.filter((todo) => todo.id !== action.payload),
       };
     case SET_CURRENT:
+      console.log(action.payload);
       return {
         ...state,
         current: action.payload,

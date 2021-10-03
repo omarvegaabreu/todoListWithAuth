@@ -47,12 +47,13 @@ const TodoState = (props) => {
     dispatch({ type: DELETE_TODO, payload: id });
   };
   //set current todo /*****************************************BUG IS HERE */
-  const setCurrent = (current) => {
-    /********************* ONLY GETTING TODO NOT DESCRIPTION IN OBJECT */
-    console.log(current);
+  const setCurrent = (todo) => {
+    /***************************** ONLY GETTING TODO NOT DESCRIPTION IN OBJECT */
+    console.log(todo);
     // console.log(current.todoDescription);
-    dispatch({ type: SET_CURRENT, payload: current });
-    /********************* ONLY GETTING TODO NOT DESCRIPTION IN OBJECT */
+    // dispatch({ type: SET_CURRENT, payload: current });
+    dispatch({ type: SET_CURRENT, payload: todo });
+    /****************************** ONLY GETTING TODO NOT DESCRIPTION IN OBJECT */
   };
 
   //clear current todo
@@ -61,9 +62,9 @@ const TodoState = (props) => {
   };
 
   //update todo
-  const updateTodo = (todo) => {
+  const updateTodo = (current) => {
     // console.log(todo);
-    dispatch({ type: UPDATE_TODO, payload: todo });
+    dispatch({ type: UPDATE_TODO, payload: current });
   };
 
   //filter todo

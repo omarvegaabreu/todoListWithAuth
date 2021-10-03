@@ -37,14 +37,10 @@ export const TodoForms = () => {
       });
     } else {
       // console.log(current);
-      updateTodo(current);
+      updateTodo(todos);
     }
-    // once conditions are met will clear form
-    // setTodo({
-    //   todo: "", //[e.target.name]
-    //   todoDescription: "", //e.target.value
-    // });
-    clearCurrent();
+
+    // clearCurrent();
   };
 
   const onClearCurrent = () => {
@@ -76,7 +72,7 @@ export const TodoForms = () => {
         />
       </Form.Field>
       <Button type="submit" basic color="blue">
-        {current === null ? "Submit" : "Edit"}
+        {current === null && current !== undefined ? "Submit" : "Edit"}
       </Button>
 
       {current ? (

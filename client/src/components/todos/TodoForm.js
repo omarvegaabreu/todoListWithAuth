@@ -32,10 +32,14 @@ export const TodoForms = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     if (current === null && current !== undefined) {
-      addTodo({ id: uuidv4(), todo, todoDescription });
+      addTodo({
+        id: uuidv4(),
+        todo,
+        todoDescription,
+      }); /*****************************************************future bug with id */
     } else {
       console.log("todo for update");
-      updateTodo(todo);
+      updateTodo(todo); /************************************************bug */
       console.log("****************************");
     }
     // once conditions are met will clear form

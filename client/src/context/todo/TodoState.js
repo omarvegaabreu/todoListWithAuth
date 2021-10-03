@@ -49,10 +49,10 @@ const TodoState = (props) => {
     dispatch({ type: DELETE_TODO, payload: id });
   };
   //set current todo /*****************************************BUG IS HERE */
-  const setCurrent = ({ todo, description }) => {
+  const setCurrent = (todo) => {
     /********************* ONLY GETTING TODO NOT DESCRIPTION IN OBJECT */
-    console.log(todo);
-    console.log(description);
+    console.log(todo.todo);
+    console.log(todo.todoDescription);
     dispatch({ type: SET_CURRENT, payload: todo });
     /********************* ONLY GETTING TODO NOT DESCRIPTION IN OBJECT */
   };

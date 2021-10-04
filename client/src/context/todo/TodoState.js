@@ -49,7 +49,7 @@ const TodoState = (props) => {
   //set current todo /*****************************************BUG IS HERE */
   const setCurrent = (todo) => {
     /***************************** ONLY GETTING TODO NOT DESCRIPTION IN OBJECT */
-    console.log(todo);
+    // console.log(todo);
     // console.log(current.todoDescription);
     // dispatch({ type: SET_CURRENT, payload: current });
     dispatch({ type: SET_CURRENT, payload: todo });
@@ -63,7 +63,6 @@ const TodoState = (props) => {
 
   //update todo
   const updateTodo = (current) => {
-    // console.log(todo);
     dispatch({ type: UPDATE_TODO, payload: current });
   };
 
@@ -73,18 +72,15 @@ const TodoState = (props) => {
 
   return (
     <TodoContext.Provider
-      value={
-        {
-          todo: state.todos,
-          current: state.current,
-          addTodo,
-          deleteTodo,
-          setCurrent,
-          clearCurrent,
-          updateTodo,
-        }
-        // console.log(state.todos))
-      }
+      value={{
+        todo: state.todos,
+        current: state.current,
+        addTodo,
+        deleteTodo,
+        setCurrent,
+        clearCurrent,
+        updateTodo,
+      }}
     >
       {props.children}
     </TodoContext.Provider>

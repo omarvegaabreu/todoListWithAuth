@@ -23,6 +23,7 @@ export default (state, action) => {
       return {
         ...state,
         todos: state.todos.map((todo) => {
+          /*******************************************************check need evaluation */
           return todo.id === action.payload.id ? action.payload.todo : todo;
         }) /***todo or todos? */,
       };
@@ -32,7 +33,6 @@ export default (state, action) => {
         todos: state.todos.filter((todo) => todo.id !== action.payload),
       };
     case SET_CURRENT:
-      console.log(action.payload);
       return {
         ...state,
         current: action.payload,

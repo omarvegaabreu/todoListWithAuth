@@ -36,7 +36,7 @@ export const TodoForms = () => {
         todoDescription,
       });
     } else {
-      // console.log(current);
+      // console.log(todos);
       updateTodo(todos);
     }
 

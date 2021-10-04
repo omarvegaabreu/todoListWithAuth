@@ -22,7 +22,12 @@ export default (state, action) => {
     case UPDATE_TODO:
       return {
         ...state,
+        // todos: console.log(state.todos),
         todos: state.todos.map((todo) => {
+          console.log(todo);
+          const check =
+            todo.id === action.payload.id ? todo : action.payload.todo;
+          // console.log("check " + check);
           /*******************************************************check need evaluation */
           return todo.id === action.payload.id ? action.payload.todo : todo;
         }) /***todo or todos? */,

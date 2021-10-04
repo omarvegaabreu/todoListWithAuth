@@ -58,7 +58,7 @@ const TodoState = (props) => {
 
   //clear current todo
   const clearCurrent = () => {
-    dispatch({ type: SET_CURRENT });
+    dispatch({ type: SET_CURRENT, payload: null });
   };
 
   //update todo
@@ -73,7 +73,7 @@ const TodoState = (props) => {
   return (
     <TodoContext.Provider
       value={{
-        todo: state.todos,
+        todos: state.todos,
         current: state.current,
         addTodo,
         deleteTodo,

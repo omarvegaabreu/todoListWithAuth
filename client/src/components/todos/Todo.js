@@ -5,12 +5,12 @@ import TodoItem from "./TodoItem";
 
 const Todos = () => {
   const todoContext = useContext(TodoContext);
-  const { todo } = todoContext;
+  const { todos } = todoContext;
 
   return (
     <Fragment>
-      {todo.map((todosObject) => (
-        <TodoItem key={todosObject.id} todos={todosObject} />
+      {todos.map((todo) => (
+        <TodoItem key={todo.id} todos={todo} />
       ))}
     </Fragment>
   );

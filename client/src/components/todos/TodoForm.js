@@ -21,7 +21,7 @@ export const TodoForms = () => {
     todoDescription: "", //e.target.value
   });
 
-  const { todo, todoDescription } = todos;
+  const { id, todo, todoDescription } = todos;
 
   const onChange = (e) =>
     setTodo({ ...todos, [e.target.name]: e.target.value });
@@ -37,7 +37,7 @@ export const TodoForms = () => {
       });
     } else {
       // console.log(todos);
-      updateTodo(todos);
+      updateTodo({ id, todo, todoDescription });
     }
 
     // clearCurrent();

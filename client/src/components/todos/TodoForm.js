@@ -8,7 +8,8 @@ export const TodoForms = () => {
   const { addTodo, current, clearCurrent, updateTodo } = todoContext;
 
   useEffect(() => {
-    if (current !== null && current !== undefined) {
+    if (current !== null) {
+      //&& current !== undefined
       setTodo(current);
     } else {
       setTodo({ todo: "", todoDescription: "" });
@@ -29,15 +30,16 @@ export const TodoForms = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     if (current === null && current !== undefined) {
-      addTodo({
-        /*****************************************************future bug with id */
-        id: uuidv4(),
-        todo,
-        todoDescription,
-      });
+      addTodo(todos);
+      // addTodo({
+      //   /*****************************************************future bug with id */
+      //   id: uuidv4(),
+      //   todo,
+      //   todoDescription,
+      // });
     } else {
       // console.log(todos);
-      updateTodo({ id, todo, todoDescription });
+      updateTodo(todos);
     }
 
     // clearCurrent();

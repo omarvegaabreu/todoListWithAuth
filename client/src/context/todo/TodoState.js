@@ -62,8 +62,8 @@ const TodoState = (props) => {
   };
 
   //update todo
-  const updateTodo = (current) => {
-    dispatch({ type: UPDATE_TODO, payload: current });
+  const updateTodo = (todo) => {
+    dispatch({ type: UPDATE_TODO, payload: todo });
   };
 
   //filter todo

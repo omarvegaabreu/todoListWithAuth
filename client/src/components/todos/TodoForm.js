@@ -30,19 +30,18 @@ export const TodoForms = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     if (current === null && current !== undefined) {
-      addTodo(todos);
-      // addTodo({
-      //   /*****************************************************future bug with id */
-      //   id: uuidv4(),
-      //   todo,
-      //   todoDescription,
-      // });
+      // addTodo(todos);
+      addTodo({
+        /*****************************************************future bug with id */
+        id: id ? id : uuidv4(), //FOR NOW WILL LEAVE UUID
+        todo,
+        todoDescription,
+      });
     } else {
-      // console.log(todos);
       updateTodo(todos);
     }
 
-    // clearCurrent();
+    clearCurrent();
   };
 
   const onClearCurrent = () => {

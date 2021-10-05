@@ -8,8 +8,7 @@ export const TodoForms = () => {
   const { addTodo, current, clearCurrent, updateTodo } = todoContext;
 
   useEffect(() => {
-    if (current !== null) {
-      //&& current !== undefined
+    if (current !== null && current !== undefined) {
       setTodo(current);
     } else {
       setTodo({ todo: "", todoDescription: "" });

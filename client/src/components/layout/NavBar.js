@@ -15,6 +15,7 @@ const NavBar = ({ title, icon }) => {
       <List.Item active>
         <Link to="/">Home</Link>
       </List.Item>
+      {/* <List.Item as="a"> */}
       <List.Item as="a">
         <Link to="/about">About</Link>
       </List.Item>

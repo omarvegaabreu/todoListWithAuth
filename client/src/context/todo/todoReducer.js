@@ -5,8 +5,6 @@ import {
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_TODO,
-  FILTER_TODOS,
-  CLEAR_FILTER,
   TODO_ERROR,
   CLEAR_TODOS,
 } from "../types";
@@ -41,6 +39,7 @@ export default (state, action) => {
         ...state,
         current: null,
       };
+
     default:
       break;
   }

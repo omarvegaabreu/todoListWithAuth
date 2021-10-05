@@ -39,31 +39,25 @@ const TodoState = (props) => {
   const [state, dispatch] = useReducer(todoReducer, initialState);
 
   //Add todo
-  const addTodo = (todo) => {
-    dispatch({ type: ADD_TODO, payload: todo });
-  };
+  const addTodo = (todo) => dispatch({ type: ADD_TODO, payload: todo });
+
   //Delete todo
-  const deleteTodo = (id) => {
-    dispatch({ type: DELETE_TODO, payload: id });
-  };
+  const deleteTodo = (id) => dispatch({ type: DELETE_TODO, payload: id });
+
   //set current todo
-  const setCurrent = (todo) => {
-    dispatch({ type: SET_CURRENT, payload: todo });
-  };
+  const setCurrent = (todo) => dispatch({ type: SET_CURRENT, payload: todo });
 
   //clear current todo
-  const clearCurrent = () => {
-    dispatch({ type: SET_CURRENT, payload: null });
-  };
+  const clearCurrent = () => dispatch({ type: SET_CURRENT, payload: null });
 
   //update todo
-  const updateTodo = (todo) => {
-    dispatch({ type: UPDATE_TODO, payload: todo });
-  };
-
+  const updateTodo = (todo) => dispatch({ type: UPDATE_TODO, payload: todo });
   //filter todo
+  const filterTodo = (text) => dispatch({ type: FILTER_TODOS, payload: text });
 
   //clear filter
+  const clearFiltered = (text) =>
+    dispatch({ type: FILTER_TODOS, payload: null });
 
   return (
     <TodoContext.Provider
@@ -75,6 +69,8 @@ const TodoState = (props) => {
         setCurrent,
         clearCurrent,
         updateTodo,
+        filterTodo,
+        clearFiltered,
       }}
     >
       {props.children}

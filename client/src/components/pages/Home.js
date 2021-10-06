@@ -10,8 +10,7 @@ const Home = () => {
         <TodoForm />{" "}
       </div>
       <div>
-        <FilteredTodos />
-        <Todos />
+        <FilteredTodos /> <Todos />
       </div>
     </div>
   );

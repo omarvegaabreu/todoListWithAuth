@@ -1,16 +1,16 @@
-import { text } from "express";
 import React, { useContext, useRef, useEffect } from "react";
 import TodoContext from "../context/todo/todoContext";
 
 const FilteredTodos = () => {
   const todoContext = useContext(TodoContext);
-  const { filteredTodo, clearFiltered, filtered } = todoContext;
+  const text = useRef("");
+  const { filteredTodo, clearFiltered, filtered, todos } = todoContext;
 
   useEffect(() => {
     if (filtered === null) {
       text.current.value = "";
     }
-  });
+  }, [filtered]);
 
   const onInputChange = (e) => {
     const textValue = text.current.value;
@@ -20,16 +20,22 @@ const FilteredTodos = () => {
       clearFiltered(null);
     }
   };
-  return (
-    <form>
-      <input
-        ref={text}
-        type="text"
-        placeholder="Filter To-do"
-        onChange={onInputChange}
-      />
-    </form>
-  );
+
+  const renderedFiltered =
+    todos.length > 0 ? (
+      <form>
+        <label>Filter to do</label>
+
+        <input
+          ref={text}
+          type="text"
+          placeholder="Filter To-do"
+          onChange={onInputChange}
+        />
+      </form>
+    ) : undefined;
+
+  return <div>{renderedFiltered}</div>;
 };
 
 export default FilteredTodos;

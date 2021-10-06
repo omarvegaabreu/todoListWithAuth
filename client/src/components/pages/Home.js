@@ -11,9 +11,6 @@ const Home = () => {
       </div>
       <div>
         <FilteredTodos />
-      </div>
-      <div>
-        {" "}
         <Todos />
       </div>
     </div>

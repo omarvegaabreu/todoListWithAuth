@@ -16,7 +16,7 @@ export default (state, action) => {
     case ADD_TODO:
       return {
         ...state,
-        todos: [action.payload, ...state.todos] /***todo or todos? */,
+        todos: [action.payload, ...state.todos],
       };
     case UPDATE_TODO:
       return {

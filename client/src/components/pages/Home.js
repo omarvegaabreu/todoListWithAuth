@@ -1,5 +1,6 @@
 import Todos from "../todos/Todo";
 import TodoForm from "../todos/TodoForm";
+import FilteredTodos from "../FilteredTodos";
 
 const Home = () => {
   return (
@@ -7,6 +8,9 @@ const Home = () => {
       <div>
         {" "}
         <TodoForm />{" "}
+      </div>
+      <div>
+        <FilteredTodos />
       </div>
       <div>
         {" "}

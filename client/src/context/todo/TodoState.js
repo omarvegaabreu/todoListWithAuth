@@ -34,6 +34,7 @@ const TodoState = (props) => {
       },
     ],
     current: null,
+    filtered: null,
   };
 
   const [state, dispatch] = useReducer(todoReducer, initialState);
@@ -53,7 +54,8 @@ const TodoState = (props) => {
   //update todo
   const updateTodo = (todo) => dispatch({ type: UPDATE_TODO, payload: todo });
   //filter todo
-  const filterTodo = (text) => dispatch({ type: FILTER_TODOS, payload: text });
+  const filteredTodo = (text) =>
+    dispatch({ type: FILTER_TODOS, payload: text });
 
   //clear filter
   const clearFiltered = (text) =>
@@ -64,12 +66,13 @@ const TodoState = (props) => {
       value={{
         todos: state.todos,
         current: state.current,
+        filtered: state.filtered,
         addTodo,
         deleteTodo,
         setCurrent,
         clearCurrent,
         updateTodo,
-        filterTodo,
+        filteredTodo,
         clearFiltered,
       }}
     >

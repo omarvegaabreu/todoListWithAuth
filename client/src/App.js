@@ -5,6 +5,8 @@ import NavBar from "./components/layout/NavBar";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import TodoState from "./context/todo/TodoState";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
 import "./App.css";
 
 const App = () => {
@@ -18,6 +20,8 @@ const App = () => {
               <Switch>
                 <Route exact path="/" component={Home}></Route>
                 <Route exact path="/About" component={About}></Route>
+                <Route exact path="/Login" component={Login}></Route>
+                <Route exact path="/Register" component={Register}></Route>
               </Switch>
             </div>
           </Fragment>

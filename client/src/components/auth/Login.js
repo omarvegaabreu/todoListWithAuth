@@ -36,9 +36,7 @@ const LoginForm = () => (
           </Button>
         </Segment>
       </Form>
-      <Message>
-        New to us? <a href="#">Sign Up</a>
-      </Message>
+      <Message>New to us?</Message>
     </Grid.Column>
   </Grid>
 );

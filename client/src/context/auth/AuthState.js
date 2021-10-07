@@ -27,6 +27,7 @@ const AuthState = (props) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   //load user
+  const addUser = (user) => dispatch({ type: REGISTER_SUCCESS, payload: user });
 
   //register user
 
@@ -43,6 +44,7 @@ const AuthState = (props) => {
         isAuthenticated: state.isAuthenticated,
         loading: state.loading,
         error: state.error,
+        addUser,
       }}
     >
       {props.children}

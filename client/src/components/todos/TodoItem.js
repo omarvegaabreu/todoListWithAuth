@@ -3,7 +3,6 @@ import { Button, Card } from "semantic-ui-react";
 import TodoContext from "../../context/todo/todoContext";
 
 export const TodoItem = ({ todos }) => {
-  console.log(todos);
   const { id, todo, todoDescription } = todos;
 
   const todoContext = useContext(TodoContext);

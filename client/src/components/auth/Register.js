@@ -89,7 +89,7 @@ const Register = () => {
               type="password"
             />
 
-            <Button color="blue" fluid size="large">
+            <Button value="register" color="blue" fluid size="large">
               Register
             </Button>
           </Segment>

@@ -13,7 +13,6 @@ import {
   LOGOUT,
   CLEAR_ERRORS,
 } from "../types";
-import { STATES } from "mongoose";
 
 const AuthState = (props) => {
   const initialState = {

@@ -38,7 +38,7 @@ const Register = () => {
     e.preventDefault();
 
     if (validEmail(email)) {
-      setAlert("You suck nigga! enter a valid email", "ui red message");
+      setAlert("Please enter a valid email", "ui red message");
 
       return;
     }
@@ -88,7 +88,7 @@ const Register = () => {
               fluid
               icon="user"
               iconPosition="left"
-              placeholder="E-mail address"
+              placeholder="email@address"
               required
             />
             <Form.Input
@@ -98,7 +98,7 @@ const Register = () => {
               fluid
               icon="lock"
               iconPosition="left"
-              placeholder="Password"
+              placeholder="Password  (use numbers and letters)"
               type="password"
               required
               minLength="6"
@@ -110,7 +110,7 @@ const Register = () => {
               fluid
               icon="lock"
               iconPosition="left"
-              placeholder="Confirm password"
+              placeholder="Confirm password  (use numbers and letters)"
               type="password"
               required
               minLength="6"

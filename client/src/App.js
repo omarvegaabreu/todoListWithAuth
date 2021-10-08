@@ -23,9 +23,9 @@ const App = () => {
                 <Alerts />
                 <Switch>
                   <Route exact path="/" component={Home}></Route>
-                  <Route exact path="/About" component={About}></Route>
-                  <Route exact path="/Login" component={Login}></Route>
-                  <Route exact path="/Register" component={Register}></Route>
+                  <Route exact path="/about" component={About}></Route>
+                  <Route exact path="/login" component={Login}></Route>
+                  <Route exact path="/register" component={Register}></Route>
                 </Switch>
               </div>
             </Fragment>

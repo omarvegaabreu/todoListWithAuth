@@ -14,7 +14,7 @@ const AlertState = (props) => {
   const setAlert = (msg, type, timeOut = 3000) => {
     const id = uuidv4();
 
-    dispatch({ type: SET_ALERT, payload: { msg, type } });
+    dispatch({ type: SET_ALERT, payload: { msg, type, id } });
     setTimeout(() => {
       dispatch({ type: REMOVE_ALERT, payload: { id } });
     }, timeOut);

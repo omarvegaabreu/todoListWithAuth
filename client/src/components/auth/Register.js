@@ -34,7 +34,7 @@ const Register = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     if (user.name === "negative") {
-      setAlert("fuck you", "ui negative message", "id");
+      setAlert("fuck you", "ui negative message");
       addUser(user);
     } else if (user.name === "positive") {
       setAlert("you are the man", "ui positive message");

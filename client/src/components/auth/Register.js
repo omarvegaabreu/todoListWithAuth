@@ -10,6 +10,7 @@ import {
 } from "semantic-ui-react";
 import AuthContext from "../../context/auth/authContext";
 import AlertContext from "../../context/alert/alertContext";
+import { validEmail } from "../../util/validation";
 
 const Register = () => {
   const alertContext = useContext(AlertContext);
@@ -29,21 +30,31 @@ const Register = () => {
 
   const { name, email, password, password2 } = user;
 
-  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+  const onChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    if (user.name === "negative") {
-      setAlert("fuck you", "ui negative message");
+
+    if (validEmail(email)) {
+      setAlert("please enter a valid email", "ui red message");
+      return;
+    }
+    if (
+      user.name === "" ||
+      user.email === "" ||
+      user.password === "" ||
+      user.password2 === ""
+    ) {
+      setAlert("Please fill out all fields.", "ui negative message");
       addUser(user);
-    } else if (user.name === "positive") {
-      setAlert("you are the man", "ui positive message");
+    } else if (user.password !== user.password2) {
+      setAlert("Password does not match.", "ui negative message");
     } else {
-      setAlert("Another color", "ui blue message");
     }
 
-    console.log("register submit");
-    console.log(user);
+    setAlert("User registered ", "ui green message");
   };
 
   return (
@@ -62,6 +73,7 @@ const Register = () => {
               icon="user"
               iconPosition="left"
               placeholder="Name"
+              required
             />
             <Form.Input
               value={email}
@@ -71,6 +83,7 @@ const Register = () => {
               icon="user"
               iconPosition="left"
               placeholder="E-mail address"
+              required
             />
             <Form.Input
               value={password}
@@ -81,6 +94,8 @@ const Register = () => {
               iconPosition="left"
               placeholder="Password"
               type="password"
+              required
+              minLength="6"
             />
             <Form.Input
               value={password2}
@@ -91,6 +106,8 @@ const Register = () => {
               iconPosition="left"
               placeholder="Confirm password"
               type="password"
+              required
+              minLength="6"
             />
 
             <Button value="register" color="blue" fluid size="large">

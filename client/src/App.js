@@ -8,6 +8,7 @@ import TodoState from "./context/todo/TodoState";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import AlertState from "./context/alert/AlertState";
+import Alerts from "./components/layout/Alerts";
 import "./App.css";
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
             <Fragment>
               <NavBar />
               <div className="container ">
+                <Alerts />
                 <Switch>
                   <Route exact path="/" component={Home}></Route>
                   <Route exact path="/About" component={About}></Route>

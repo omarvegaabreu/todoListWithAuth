@@ -1,4 +1,3 @@
-import { PasswordRounded } from "@mui/icons-material";
 import React, { useState, useContext, useEffect } from "react";
 import {
   Button,
@@ -10,16 +9,16 @@ import {
   Segment,
 } from "semantic-ui-react";
 import AuthContext from "../../context/auth/authContext";
+import AlertContext from "../../context/alert/alertContext";
 
 const Register = () => {
-  const authContext = useContext(AuthContext);
-  const { addUser } = authContext;
+  const alertContext = useContext(AlertContext);
 
-  // useEffect(() => {
-  //   if (user !== null && user !== undefined && user !== "") {
-  //     addUser(user);
-  //   }
-  // });
+  const { setAlert } = alertContext;
+
+  const authContext = useContext(AuthContext);
+
+  const { addUser } = authContext;
 
   const [user, setUser] = useState({
     name: "",
@@ -34,8 +33,13 @@ const Register = () => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    if (user) {
+    if (user.name === "negative") {
+      setAlert("fuck you", "ui negative message", "id");
       addUser(user);
+    } else if (user.name === "positive") {
+      setAlert("you are the man", "ui positive message");
+    } else {
+      setAlert("Another color", "ui blue message");
     }
 
     console.log("register submit");

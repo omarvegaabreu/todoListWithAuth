@@ -7,7 +7,7 @@ const Alerts = () => {
 
   return alertContext.alerts.map((alert) => {
     return (
-      <Message negative>
+      <Message key={alert.id} className={alert.type}>
         <Message.Header>{alert.msg}</Message.Header>
       </Message>
     );

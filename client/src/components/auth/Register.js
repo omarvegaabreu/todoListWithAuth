@@ -10,7 +10,7 @@ import {
 } from "semantic-ui-react";
 import AuthContext from "../../context/auth/authContext";
 import AlertContext from "../../context/alert/alertContext";
-import { validEmail } from "../../util/validation";
+import { validEmail, isAlphaNumeric } from "../../util/validation";
 
 const Register = () => {
   const alertContext = useContext(AlertContext);
@@ -38,9 +38,16 @@ const Register = () => {
     e.preventDefault();
 
     if (validEmail(email)) {
-      setAlert("please enter a valid email", "ui red message");
+      setAlert("You suck nigga! enter a valid email", "ui red message");
+
       return;
     }
+
+    if (!isAlphaNumeric(password)) {
+      setAlert("Password requires numbers and letters", "ui red message");
+      return;
+    }
+
     if (
       user.name === "" ||
       user.email === "" ||
@@ -48,13 +55,12 @@ const Register = () => {
       user.password2 === ""
     ) {
       setAlert("Please fill out all fields.", "ui negative message");
-      addUser(user);
     } else if (user.password !== user.password2) {
       setAlert("Password does not match.", "ui negative message");
     } else {
+      addUser(user);
+      setAlert("User registered ", "ui green message");
     }
-
-    setAlert("User registered ", "ui green message");
   };
 
   return (

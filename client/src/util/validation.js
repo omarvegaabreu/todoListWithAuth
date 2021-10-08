@@ -11,6 +11,16 @@ export const validEmail = (email) => {
   return !regex.test(email);
 };
 
+export const isAlphaNumeric = (password) => {
+  const regEx = /^[0-9a-z]+$/;
+
+  if (!password.match(regEx)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 let registeredUsers = ["ravi@kiran.com", "mail@myblog.in", "contact@lucky.com"];
 
 export const userExists = (email) => {

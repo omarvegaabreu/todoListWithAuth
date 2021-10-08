@@ -21,7 +21,7 @@ export const isAlphaNumeric = (password) => {
   }
 };
 
-let registeredUsers = ["ravi@kiran.com", "mail@myblog.in", "contact@lucky.com"];
+let registeredUsers = ["pacual@angulo.com", "me@pica.in", "el@culo.com"];
 
 export const userExists = (email) => {
   return new Promise((resolve) => {

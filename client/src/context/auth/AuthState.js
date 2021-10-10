@@ -2,6 +2,7 @@ import React, { useReducer } from "react";
 //import { v4 as uuidv4 } from "uuid";
 import AuthContext from "./authContext";
 import authReducer from "./authReducer";
+import axios from "axios";
 
 import {
   REGISTER_SUCCESS,
@@ -19,16 +20,36 @@ const AuthState = (props) => {
     token: localStorage.getItem("token"),
     isAuthenticated: null,
     loading: true,
-    error: null,
     user: null,
+    error: null,
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   //load user
-  const addUser = (user) => dispatch({ type: REGISTER_SUCCESS, payload: user });
+  // const addUser = (user) => dispatch({ type: REGISTER_SUCCESS, payload: user });
 
-  //register user
+  //register user POST
+  const registerUser = async (formData) => {
+    const config = {
+      headers: {
+        "Content-type": "application-json",
+      },
+    };
+
+    try {
+      const res = await axios.post("/api/users", formData, config);
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: REGISTER_FAIL,
+        payload: error.data.error.msg,
+      });
+    }
+  };
 
   //login user
 
@@ -43,7 +64,7 @@ const AuthState = (props) => {
         isAuthenticated: state.isAuthenticated,
         loading: state.loading,
         error: state.error,
-        addUser,
+        registerUser,
       }}
     >
       {props.children}

@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { Menu } from "semantic-ui-react";
+import { Menu, Icon } from "semantic-ui-react";
 
 const NavBar = ({ title, icon }) => {
   return (
     <Menu stackable className="navbar">
       <Menu.Item color="teal">
-        <icon className={icon}>{title}</icon>
+        <Icon color="blue" name={icon} size="big" />
+        <p>{title}</p>
       </Menu.Item>
       <Menu.Item color="teal" as={Link} to="/" name="home" />
       <Menu.Item as={Link} to="/login" name="login" />
@@ -26,7 +27,7 @@ NavBar.propTypes = {
 //Default Props
 NavBar.defaultProps = {
   title: " To-do",
-  icon: "fa fa-th-list ",
+  icon: "clipboard list ",
 };
 
 export default NavBar;

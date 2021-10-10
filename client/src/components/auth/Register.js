@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import {
   Button,
   Form,
@@ -19,7 +19,7 @@ const Register = () => {
 
   const authContext = useContext(AuthContext);
 
-  const { addUser } = authContext;
+  const { registerUser } = authContext;
 
   const [user, setUser] = useState({
     name: "",
@@ -58,7 +58,7 @@ const Register = () => {
     } else if (user.password !== user.password2) {
       setAlert("Password does not match.", "ui negative message");
     } else {
-      addUser(user);
+      registerUser({ name, email, password });
       setAlert("User registered ", "ui green message");
     }
   };

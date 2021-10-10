@@ -45,7 +45,7 @@ const Register = () => {
 
     if (!isAlphaNumeric(password)) {
       setAlert(
-        "Password requires numbers,letters and special [!@#$%^&*()]",
+        "Password requires numbers,letters, and special [!@#$%^&*]",
         "ui red message"
       );
       return;
@@ -61,6 +61,7 @@ const Register = () => {
     } else if (user.password !== user.password2) {
       setAlert("Password does not match.", "ui negative message");
     } else {
+      // console.log(user);
       registerUser({ name, email, password });
       setAlert("User registered ", "ui green message");
     }

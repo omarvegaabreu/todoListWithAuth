@@ -70,7 +70,7 @@ router.post(
       });
     } catch (error) {
       // error500(res, error); need to check for errors before implementing
-      console.error(error.message);
+      console.error("sorry succa its 500");
       res.status(500).send("Server error");
     }
   }

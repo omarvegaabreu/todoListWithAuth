@@ -44,7 +44,10 @@ const Register = () => {
     }
 
     if (!isAlphaNumeric(password)) {
-      setAlert("Password requires numbers and letters", "ui red message");
+      setAlert(
+        "Password requires numbers,letters and special [!@#$%^&*()]",
+        "ui red message"
+      );
       return;
     }
 

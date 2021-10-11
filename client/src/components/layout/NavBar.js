@@ -19,7 +19,7 @@ const NavBar = ({ title, icon }) => {
 
   const onLogout = () => {
     logout();
-    clearTodos();
+    // clearTodos();
   };
 
   const authenticatedNav = (

@@ -7,9 +7,10 @@ const FilteredTodos = () => {
   const { filteredTodo, clearFiltered, filtered, todos } = todoContext;
 
   useEffect(() => {
-    if (filtered === null) {
+    if (filtered === null && todos.length > 0) {
       text.current.value = "";
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filtered]);
 
   const onInputChange = (e) => {

@@ -7,10 +7,6 @@ const Todos = () => {
   const todoContext = useContext(TodoContext);
   const { todos, filtered } = todoContext;
 
-  if (todos.length === 0) {
-    return <hinge>You have nothing to do </hinge>;
-  }
-
   return (
     <Fragment>
       <TransitionGroup>

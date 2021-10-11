@@ -16,23 +16,7 @@ import {
 
 const TodoState = (props) => {
   const initialState = {
-    todos: [
-      {
-        id: 1,
-        todo: "first",
-        todoDescription: "first todo",
-      },
-      {
-        id: 2,
-        todo: "second",
-        todoDescription: "",
-      },
-      {
-        id: 3,
-        todo: "third",
-        todoDescription: "third todo",
-      },
-    ],
+    todos: [],
     current: null,
     filtered: null,
   };

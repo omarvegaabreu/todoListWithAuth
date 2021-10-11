@@ -1,11 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
 import TodoContext from "../../context/todo/todoContext";
+import AuthContext from "../../context/auth/authContext";
+
 import { Button, Form } from "semantic-ui-react";
 import { v4 as uuidv4 } from "uuid";
 
 export const TodoForms = () => {
   const todoContext = useContext(TodoContext);
+  // const authContext = useContext(AuthContext);
   const { addTodo, current, clearCurrent, updateTodo } = todoContext;
+  // const { user } = authContext;
+  // console.log(user);
 
   useEffect(() => {
     if (current !== null && current !== undefined) {

@@ -1,14 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Redirect } from "react-router";
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Message,
-  Segment,
-} from "semantic-ui-react";
+import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
 import AuthContext from "../../context/auth/authContext";
 import AlertContext from "../../context/alert/alertContext";
 import { validEmail, isAlphaNumeric } from "../../util/validation";

@@ -26,11 +26,12 @@ const NavBar = ({ title, icon }) => {
         <Icon color="blue" name={icon} size="big" />
         <p>{title}</p>
       </Menu.Item>
+      {/* <p>{userName}</p> */}
+      <Menu.Item color="teal" name={`user: ${userName}`} />
       <Menu.Item color="teal" as={Link} to="/" name="home" />
       <Menu.Item as={Link} to="/login" name="login" />
       <Menu.Item as={Link} to="/register" name="register" />
       <Menu.Item as={Link} to="/about" name="about" />
-      <p>{userName} add things to do.</p>
     </Menu>
   );
 };

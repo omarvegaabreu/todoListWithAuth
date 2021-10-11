@@ -18,7 +18,7 @@ export const TodoItem = ({ todos }) => {
     setCurrent(todos);
   };
   return (
-    <Card className="card bg-light">
+    <Card fluid className="card bg-light">
       <Card.Content>
         <Card.Header>{todo}</Card.Header>
 

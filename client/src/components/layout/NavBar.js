@@ -19,13 +19,14 @@ const NavBar = ({ title, icon }) => {
 
   const onLogout = () => {
     logout();
-    // clearTodos();
+    clearTodos();
   };
 
   const authenticatedNav = (
     <Menu stackable className="navbar">
       <Menu.Item header>
         <Icon color="blue" name={icon} size="big" />
+        <List.Content>{title}</List.Content>
       </Menu.Item>
       <Menu.Item header>
         <List.Icon color="blue" name="users" />
@@ -41,6 +42,7 @@ const NavBar = ({ title, icon }) => {
     <>
       <Menu.Item color="teal">
         <Icon color="blue" name={icon} size="big" />
+        <List.Content>{title}</List.Content>
       </Menu.Item>
       <Menu.Item color="teal" as={Link} to="/" name="home" />
       <Menu.Item as={Link} to="/login" name="login" />

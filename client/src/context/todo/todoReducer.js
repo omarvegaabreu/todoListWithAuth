@@ -22,7 +22,6 @@ export default (state, action) => {
       return {
         ...state,
         todos: state.todos.map((todo) => {
-          console.log(todo);
           return todo.id === action.payload.id ? action.payload : todo;
         }),
       };
@@ -49,6 +48,13 @@ export default (state, action) => {
           return todo.todo.match(regex) || todo.todoDescription.match(regex);
         }),
       };
+
+    case CLEAR_TODOS: {
+      return {
+        ...state,
+        todos: [],
+      };
+    }
     default:
       break;
   }

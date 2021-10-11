@@ -1,5 +1,6 @@
 import React, { useContext, useRef, useEffect } from "react";
 import TodoContext from "../context/todo/todoContext";
+import { Form } from "semantic-ui-react";
 
 const FilteredTodos = () => {
   const todoContext = useContext(TodoContext);
@@ -24,16 +25,17 @@ const FilteredTodos = () => {
 
   const renderedFiltered =
     todos.length > 0 ? (
-      <form>
-        <label>Filter to do</label>
-
-        <input
-          ref={text}
-          type="text"
-          placeholder="Filter To-do"
-          onChange={onInputChange}
-        />
-      </form>
+      <Form>
+        <Form.Field>
+          <label>Find to-do</label>
+          <Form.Input
+            ref={text}
+            type="text"
+            placeholder="Filter To-do"
+            onChange={onInputChange}
+          />
+        </Form.Field>
+      </Form>
     ) : undefined;
 
   return <div>{renderedFiltered}</div>;

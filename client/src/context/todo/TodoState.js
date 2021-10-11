@@ -12,6 +12,7 @@ import {
   CLEAR_FILTER,
   SET_ALERT,
   REMOVE_ALERT,
+  CLEAR_TODOS,
 } from "../types";
 
 const TodoState = (props) => {
@@ -44,6 +45,9 @@ const TodoState = (props) => {
   //clear filter
   const clearFiltered = (text) =>
     dispatch({ type: FILTER_TODOS, payload: null });
+  const clearTodos = () => {
+    dispatch({ type: CLEAR_TODOS, payload: [] });
+  };
 
   return (
     <TodoContext.Provider
@@ -58,6 +62,7 @@ const TodoState = (props) => {
         updateTodo,
         filteredTodo,
         clearFiltered,
+        clearTodos,
       }}
     >
       {props.children}

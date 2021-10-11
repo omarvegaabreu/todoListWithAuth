@@ -27,7 +27,7 @@ NavBar.propTypes = {
 //Default Props
 NavBar.defaultProps = {
   title: " To-do",
-  icon: "clipboard list ",
+  icon: "clipboard list",
 };
 
 export default NavBar;

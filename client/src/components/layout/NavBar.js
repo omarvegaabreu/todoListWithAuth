@@ -1,13 +1,15 @@
 import React, { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { Menu, Icon } from "semantic-ui-react";
+import { Menu, Icon, List, Button } from "semantic-ui-react";
 import AuthContext from "../../context/auth/authContext";
+import TodoContext from "../../context/todo/todoContext";
 
 const NavBar = ({ title, icon }) => {
   const authContext = useContext(AuthContext);
-  const { user, loadUser } = authContext;
-  let userName;
+  const todoContext = useContext(TodoContext);
+  const { clearTodos } = todoContext;
+  const { user, loadUser, logout, isAuthenticated } = authContext;
 
   useEffect(() => {
     loadUser();
@@ -15,23 +17,41 @@ const NavBar = ({ title, icon }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (user !== null && user !== undefined) {
-    userName = user.name;
-  } else {
-    userName = "";
-  }
-  return (
+  const onLogout = () => {
+    logout();
+    clearTodos();
+  };
+
+  const authenticatedNav = (
     <Menu stackable className="navbar">
+      <Menu.Item header>
+        <Icon color="blue" name={icon} size="big" />
+      </Menu.Item>
+      <Menu.Item header>
+        <List.Icon color="blue" name="users" />
+        <List.Content>{user && user.name}</List.Content>
+        <a onClick={onLogout} href="#!">
+          <Icon color="blue" name={"log out"} size="big" />
+        </a>
+      </Menu.Item>
+    </Menu>
+  );
+
+  const guestNav = (
+    <>
       <Menu.Item color="teal">
         <Icon color="blue" name={icon} size="big" />
-        <p>{title}</p>
       </Menu.Item>
-      {/* <p>{userName}</p> */}
-      <Menu.Item color="teal" name={`user: ${userName}`} />
       <Menu.Item color="teal" as={Link} to="/" name="home" />
       <Menu.Item as={Link} to="/login" name="login" />
       <Menu.Item as={Link} to="/register" name="register" />
       <Menu.Item as={Link} to="/about" name="about" />
+    </>
+  );
+
+  return (
+    <Menu stackable className="navbar">
+      {isAuthenticated ? authenticatedNav : guestNav}
     </Menu>
   );
 };

@@ -24,7 +24,6 @@ router.post(
     ).isLength({ min: 6 }),
   ],
   async (req, res) => {
-    console.log(req);
     const errors = validationResult(req); //import express validator returns promise
 
     //checks res.body for response if error log error array or look at res.json
@@ -70,7 +69,7 @@ router.post(
       });
     } catch (error) {
       // error500(res, error); need to check for errors before implementing
-      console.error("sorry succa its 500");
+
       res.status(500).send("Server error");
     }
   }

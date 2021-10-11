@@ -1,37 +1,56 @@
-import { PasswordRounded } from "@mui/icons-material";
 import React, { useState, useContext, useEffect } from "react";
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Message,
-  Segment,
-} from "semantic-ui-react";
+import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
 import AuthContext from "../../context/auth/authContext";
+import AlertContext from "../../context/alert/alertContext";
 
-const Register = () => {
+const Login = (props) => {
+  const alertContext = useContext(AlertContext);
+
+  const { setAlert } = alertContext;
+
   const authContext = useContext(AuthContext);
-  const { addUser } = authContext;
+
+  const { loginUser, error, clearError, isAuthenticated } = authContext;
 
   const [user, setUser] = useState({
+    name: "",
     email: "",
     password: "",
+    password2: "",
   });
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push("/");
+    } else if (
+      error === "Please check your email, and try again" &&
+      error === "Invalid password, please try again."
+    ) {
+      setAlert("Invalid email and password combination.", "ui red message.");
+      clearError();
+    } else if (error === "Invalid password, please try again.") {
+      setAlert(`Invalid password, please try again.`, "ui red message", 10000);
+      clearError();
+    } else {
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error, clearError, isAuthenticated, props, loginUser]);
 
   const { email, password } = user;
 
-  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+  const onChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    if (user) {
-      addUser(user);
-    }
 
-    console.log("register submit");
-    console.log(user);
+    if (user.email === "" || user.password === "") {
+      setAlert("Please fill out all fields.", "ui negative message");
+    } else {
+      loginUser({ email, password });
+    }
   };
 
   return (
@@ -71,4 +90,4 @@ const Register = () => {
     </Grid>
   );
 };
-export default Register;
+export default Login;

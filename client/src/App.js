@@ -9,7 +9,14 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import AlertState from "./context/alert/AlertState";
 import Alerts from "./components/layout/Alerts";
+import setAuthToken from "./util/setAuthToken";
 import "./App.css";
+
+const USER_TOKEN = localStorage.token;
+
+if (USER_TOKEN) {
+  setAuthToken(USER_TOKEN);
+}
 
 const App = () => {
   return (

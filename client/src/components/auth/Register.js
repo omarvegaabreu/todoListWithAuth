@@ -13,18 +13,14 @@ import AuthContext from "../../context/auth/authContext";
 import AlertContext from "../../context/alert/alertContext";
 import { validEmail, isAlphaNumeric } from "../../util/validation";
 
-const Register = () => {
+const Register = (props) => {
   const alertContext = useContext(AlertContext);
 
   const { setAlert } = alertContext;
 
   const authContext = useContext(AuthContext);
 
-  const { registerUser, error, clearError } = authContext;
-
-  // useEffect(() => {
-
-  // }, [error, clearError, setAlert]);
+  const { registerUser, error, clearError, isAuthenticated } = authContext;
 
   const [user, setUser] = useState({
     name: "",
@@ -34,11 +30,18 @@ const Register = () => {
   });
 
   useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push("/");
+    }
     if (error === "User already exists") {
-      setAlert(`${error}. Please go to login page.`, "ui red message", 10000);
+      setAlert(
+        `${error}. You will be redirected to the login page.`,
+        "ui red message",
+        10000
+      );
       clearError();
     }
-  }, [error, clearError, setAlert]);
+  }, [error, clearError, setAlert, isAuthenticated, props]);
 
   const { name, email, password, password2 } = user;
 

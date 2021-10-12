@@ -44,7 +44,7 @@ const NavBar = ({ title, icon }) => {
         <Icon color="blue" name={icon} size="big" />
         <List.Content>{title}</List.Content>
       </Menu.Item>
-      <Menu.Item color="teal" as={Link} to="/" name="home" />
+
       <Menu.Item as={Link} to="/login" name="login" />
       <Menu.Item as={Link} to="/register" name="register" />
       <Menu.Item as={Link} to="/about" name="about" />

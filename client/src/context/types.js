@@ -16,3 +16,4 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const CLEAR_TODOS = "CLEAR_TODOS";
+export const TODOS_ERROR = "TODOS_ERROR";

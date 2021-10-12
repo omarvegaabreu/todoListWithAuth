@@ -5,7 +5,7 @@ import {
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_TODO,
-  TODO_ERROR,
+  TODOS_ERROR,
   CLEAR_TODOS,
   FILTER_TODOS,
 } from "../types";
@@ -53,6 +53,12 @@ export default (state, action) => {
       return {
         ...state,
         todos: [],
+      };
+    }
+    case TODOS_ERROR: {
+      return {
+        ...state,
+        error: action.payload,
       };
     }
     default:

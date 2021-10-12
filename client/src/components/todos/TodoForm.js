@@ -59,6 +59,7 @@ export const TodoForms = () => {
           value={todo}
           onChange={onChange}
           name="todo" //this is e.target.name
+          required
         />
       </Form.Field>
       <Form.Field>

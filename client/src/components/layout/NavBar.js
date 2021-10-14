@@ -29,6 +29,7 @@ const NavBar = ({ title, icon }) => {
         <List.Content>{title}</List.Content>
       </Menu.Item>
       <Menu.Item header>
+        <Menu.Item as={Link} to="/Home" name="home" />
         <List.Icon color="blue" name="users" />
         <List.Content>{user && user.name}</List.Content>
         <a onClick={onLogout} href="#!">

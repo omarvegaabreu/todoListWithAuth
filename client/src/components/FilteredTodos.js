@@ -8,7 +8,7 @@ const FilteredTodos = () => {
   const { filteredTodo, clearFiltered, filtered, todos } = todoContext;
 
   useEffect(() => {
-    if (filtered === null && todos.length > 0) {
+    if (filtered === null && todos !== null && todos.length > 0) {
       text.current.value = "";
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -24,7 +24,7 @@ const FilteredTodos = () => {
   };
 
   const renderedFiltered =
-    todos.length > 0 ? (
+    todos !== null && todos.length > 0 ? (
       <Form>
         <Form.Field>
           <label>Find to-do</label>

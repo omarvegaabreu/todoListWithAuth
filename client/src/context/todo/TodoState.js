@@ -6,26 +6,37 @@ import todoReducer from "./todoReducer";
 import {
   ADD_TODO,
   DELETE_TODO,
-  SET_CURRENT,
+  GET_TODOS,
+  CLEAR_TODOS,
   CLEAR_CURRENT,
+  SET_CURRENT,
   UPDATE_TODO,
   FILTER_TODOS,
+  TODOS_ERROR,
   CLEAR_FILTER,
   SET_ALERT,
   REMOVE_ALERT,
-  CLEAR_TODOS,
-  TODOS_ERROR,
 } from "../types";
 
 const TodoState = (props) => {
   const initialState = {
-    todos: [],
+    todos: null,
     current: null,
     filtered: null,
     error: null,
   };
 
   const [state, dispatch] = useReducer(todoReducer, initialState);
+
+  //get todos
+  const getTodos = async (todo) => {
+    try {
+      const res = await axios.get("/api/todos");
+      dispatch({ type: GET_TODOS, payload: res.data });
+    } catch (error) {
+      dispatch({ type: TODOS_ERROR, payload: error.response.msg });
+    }
+  };
 
   //Add todo
   const addTodo = async (todo) => {
@@ -80,6 +91,7 @@ const TodoState = (props) => {
         filteredTodo,
         clearFiltered,
         clearTodos,
+        getTodos,
       }}
     >
       {props.children}

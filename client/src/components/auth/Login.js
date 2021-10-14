@@ -31,6 +31,9 @@ const Login = (props) => {
     } else if (error === "Invalid password, please try again.") {
       setAlert(`Invalid password, please try again.`, "ui red message", 10000);
       clearError();
+    } else if (error === "Please check your email, and try again") {
+      setAlert(`Invalid email, please try again.`, "ui red message", 10000);
+      clearError();
     } else {
     }
 

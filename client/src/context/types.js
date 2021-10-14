@@ -4,6 +4,7 @@ export const CLEAR_TODOS = "CLEAR_TODOS";
 export const TODOS_ERROR = "TODOS_ERROR";
 export const UPDATE_TODO = "UPDATE_TODO";
 export const FILTER_TODOS = "FILTER_TODOS";
+export const GET_TODOS = "GET_TODOS";
 export const SET_CURRENT = "SET_CURRENT";
 export const CLEAR_CURRENT = "CLEAR_CURRENT";
 export const CLEAR_FILTER = "CLEAR_FILTER";

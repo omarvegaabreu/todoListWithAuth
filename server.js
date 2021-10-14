@@ -25,7 +25,7 @@ app.use("/api/todos", require("./routes/todo"));
 //EXPRESS SERVER
 app.listen(port, (error) =>
   error
-    ? console.log(error)
+    ? console.log("this is error suca " + error)
     : console.log(
         `Server is listening on port ${port} as ${process.env.DB_USERNAME} `
       )

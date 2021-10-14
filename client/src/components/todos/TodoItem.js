@@ -3,14 +3,14 @@ import { Button, Card } from "semantic-ui-react";
 import TodoContext from "../../context/todo/todoContext";
 
 export const TodoItem = ({ todos }) => {
-  const { id, todo, todoDescription } = todos;
+  const { _id, todo, todoDescription } = todos;
 
   const todoContext = useContext(TodoContext);
 
   const { deleteTodo, setCurrent, clearCurrent } = todoContext;
 
   const onDelete = () => {
-    deleteTodo(id);
+    deleteTodo(_id);
     clearCurrent();
   };
 

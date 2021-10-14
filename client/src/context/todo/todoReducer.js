@@ -30,14 +30,14 @@ export default (state, action) => {
       return {
         ...state,
         todos: state.todos.map((todo) => {
-          return todo.id === action.payload.id ? action.payload : todo;
+          return todo._id === action.payload._id ? action.payload : todo;
         }),
         loading: false,
       };
     case DELETE_TODO:
       return {
         ...state,
-        todos: state.todos.filter((todo) => todo.id !== action.payload),
+        todos: state.todos.filter((todo) => todo._id !== action.payload),
         loading: false,
       };
     case SET_CURRENT:

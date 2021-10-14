@@ -68,6 +68,7 @@ router.post(
 //route is private
 router.put("/:id", auth, async (req, res) => {
   console.log(req.body);
+
   const { user, todo, todoDescription, date } = req.body;
   // console.log(
   //   "user " + user,
@@ -82,7 +83,6 @@ router.put("/:id", auth, async (req, res) => {
   if (todo) todoFields.todo = todo;
   if (date) todoFields.date = date;
   if (todoDescription) todoFields.todoDescription = todoDescription;
-  // console.log("todo fields " + todoFields); check if todoFields is receiving information.
 
   try {
     let todo = await TodoSchema.findById(req.params.id);
@@ -98,7 +98,7 @@ router.put("/:id", auth, async (req, res) => {
       { new: true }
     );
 
-    res.json({ todo });
+    res.json(todo);
   } catch (error) {
     // console.log("ERROR ON LINE 49 TODO.JS ");
     console.error(error.message);

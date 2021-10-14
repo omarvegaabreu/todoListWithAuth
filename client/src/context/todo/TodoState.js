@@ -28,6 +28,8 @@ const TodoState = (props) => {
 
   const [state, dispatch] = useReducer(todoReducer, initialState);
 
+  /************API CRUD OPERATIONS***************************************************** */
+
   //get todos
   const getTodos = async (todo) => {
     try {
@@ -55,7 +57,32 @@ const TodoState = (props) => {
   };
 
   //Delete todo
-  const deleteTodo = (id) => dispatch({ type: DELETE_TODO, payload: id });
+  const deleteTodo = async (id) => {
+    try {
+      await axios.delete(`/api/todos/${id}`);
+      dispatch({ type: DELETE_TODO, payload: id });
+    } catch (error) {
+      dispatch({ type: TODOS_ERROR, payload: error.response.msg });
+    }
+  };
+
+  //update todo
+  const updateTodo = async (todo) => {
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+
+    try {
+      const res = await axios.put(`/api/todos/${todo._id}`, todo, config);
+      dispatch({ type: UPDATE_TODO, payload: res.data });
+    } catch (error) {
+      dispatch({ type: TODOS_ERROR, payload: error.response.msg });
+    }
+  };
+
+  /************UI  OPERATIONS***************************************************** */
 
   //set current todo
   const setCurrent = (todo) => dispatch({ type: SET_CURRENT, payload: todo });
@@ -63,8 +90,6 @@ const TodoState = (props) => {
   //clear current todo
   const clearCurrent = () => dispatch({ type: SET_CURRENT, payload: null });
 
-  //update todo
-  const updateTodo = (todo) => dispatch({ type: UPDATE_TODO, payload: todo });
   //filter todo
   const filteredTodo = (text) =>
     dispatch({ type: FILTER_TODOS, payload: text });
@@ -72,6 +97,8 @@ const TodoState = (props) => {
   //clear filter
   const clearFiltered = (text) =>
     dispatch({ type: FILTER_TODOS, payload: null });
+
+  //clear todos
   const clearTodos = () => {
     dispatch({ type: CLEAR_TODOS });
   };

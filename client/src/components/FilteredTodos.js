@@ -12,11 +12,11 @@ const FilteredTodos = () => {
       text.current.value = "";
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filtered]);
+  }, []);
 
   const onInputChange = (e) => {
     const textValue = text.current.value;
-    if (textValue !== "" && textValue !== undefined) {
+    if (textValue !== "" || textValue !== undefined || textValue !== null) {
       filteredTodo(e.target.value);
     } else {
       clearFiltered(null);

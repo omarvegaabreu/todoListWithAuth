@@ -63,6 +63,9 @@ export default (state, action) => {
       return {
         ...state,
         todos: null,
+        current: null,
+        filtered: null,
+        error: null,
       };
     }
 

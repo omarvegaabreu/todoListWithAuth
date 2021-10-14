@@ -12,12 +12,16 @@ const Todos = () => {
       <TransitionGroup>
         {filtered !== null
           ? filtered.map((filtered) => (
-              <CSSTransition key={filtered.id} timeout={1000} classNames="item">
+              <CSSTransition
+                key={filtered._id}
+                timeout={1000}
+                classNames="item"
+              >
                 <TodoItem todos={filtered} />
               </CSSTransition>
             ))
           : todos.map((todo) => (
-              <CSSTransition key={todo.id} timeout={1000} classNames="item">
+              <CSSTransition key={todo._id} timeout={1000} classNames="item">
                 <TodoItem todos={todo} />
               </CSSTransition>
             ))}

@@ -1,4 +1,5 @@
 import React, { useReducer } from "react";
+import axios from "axios";
 //import { v4 as uuidv4 } from "uuid";
 import TodoContext from "./todoContext";
 import todoReducer from "./todoReducer";
@@ -13,6 +14,7 @@ import {
   SET_ALERT,
   REMOVE_ALERT,
   CLEAR_TODOS,
+  TODOS_ERROR,
 } from "../types";
 
 const TodoState = (props) => {
@@ -20,12 +22,26 @@ const TodoState = (props) => {
     todos: [],
     current: null,
     filtered: null,
+    error: null,
   };
 
   const [state, dispatch] = useReducer(todoReducer, initialState);
 
   //Add todo
-  const addTodo = (todo) => dispatch({ type: ADD_TODO, payload: todo });
+  const addTodo = async (todo) => {
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+
+    try {
+      const res = await axios.post("/api/todos", todo, config);
+      dispatch({ type: ADD_TODO, payload: res.data });
+    } catch (error) {
+      dispatch({ type: TODOS_ERROR, payload: error.response.msg });
+    }
+  };
 
   //Delete todo
   const deleteTodo = (id) => dispatch({ type: DELETE_TODO, payload: id });
@@ -55,6 +71,7 @@ const TodoState = (props) => {
         todos: state.todos,
         current: state.current,
         filtered: state.filtered,
+        error: state.error,
         addTodo,
         deleteTodo,
         setCurrent,

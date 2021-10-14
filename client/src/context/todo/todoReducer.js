@@ -8,12 +8,15 @@ import {
   TODO_ERROR,
   CLEAR_TODOS,
   FILTER_TODOS,
+  TODOS_ERROR,
 } from "../types";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state, action) => {
   switch (action.type) {
     case ADD_TODO:
+      console.log(action.payload);
+      console.log(state.todos);
       return {
         ...state,
         todos: [action.payload, ...state.todos],
@@ -55,7 +58,15 @@ export default (state, action) => {
         todos: [],
       };
     }
+
+    case TODOS_ERROR: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+
     default:
-      break;
+      return state;
   }
 };

@@ -20,7 +20,7 @@ app.use(express.json({ extended: false }));
 app.get("/", (req, res) => res.json({ msg: "landing page" }));
 app.use("/api/users", require("./routes/user"));
 app.use("/api/auth", require("./routes/auth"));
-app.use("/api/todo", require("./routes/todo"));
+app.use("/api/todos", require("./routes/todo"));
 
 //EXPRESS SERVER
 app.listen(port, (error) =>

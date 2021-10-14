@@ -62,7 +62,7 @@ export default (state, action) => {
     case CLEAR_TODOS: {
       return {
         ...state,
-        todos: [],
+        todos: null,
       };
     }
 

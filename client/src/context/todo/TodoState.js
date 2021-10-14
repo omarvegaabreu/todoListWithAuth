@@ -73,7 +73,7 @@ const TodoState = (props) => {
   const clearFiltered = (text) =>
     dispatch({ type: FILTER_TODOS, payload: null });
   const clearTodos = () => {
-    dispatch({ type: CLEAR_TODOS, payload: [] });
+    dispatch({ type: CLEAR_TODOS });
   };
 
   return (

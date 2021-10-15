@@ -1,10 +1,22 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import TodoContext from "../../context/todo/todoContext";
-import { Button, Checkbox, Form } from "semantic-ui-react";
+import { Button, Form } from "semantic-ui-react";
 import { v4 as uuidv4 } from "uuid";
 
 export const TodoForms = () => {
   const todoContext = useContext(TodoContext);
+  // const authContext = useContext(AuthContext);
+  const { addTodo, current, clearCurrent, updateTodo } = todoContext;
+  // const { user } = authContext;
+  // console.log(user);
+
+  useEffect(() => {
+    if (current !== null && current !== undefined) {
+      setTodo(current);
+    } else {
+      setTodo({ todo: "", todoDescription: "" });
+    }
+  }, [todoContext, current]);
 
   const [todos, setTodo] = useState({
     // id: uuidv4() /****ADDED SHOULD NOT BE THERE MAYBE */,
@@ -12,36 +24,40 @@ export const TodoForms = () => {
     todoDescription: "", //e.target.value
   });
 
-  const { todo, todoDescription } = todos;
+  const { id, todo, todoDescription } = todos;
+
   const onChange = (e) =>
     setTodo({ ...todos, [e.target.name]: e.target.value });
 
-  // console.log(todos);
-  // console.log(todoDescription);
-
   const onFormSubmit = (e) => {
-    // console.log(e);
     e.preventDefault();
-    // console.log("line 23 Todoform.js " + todos);
-    todoContext.addTodo({ id: uuidv4(), todo, todoDescription });
-    // try {
-    //   todoContext.addTodo(todo);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    console.log(todo);
-    setTodo({
-      todo: "", //[e.target.name]
-      todoDescription: "", //e.target.value
-    });
-    //   console.log(todos.todo);
-    //   console.log(todos.todoDescription);
+    if (current === null && current !== undefined) {
+      // addTodo(todos);
+      addTodo({
+        /*****************************************************future bug with id */
+        id: id ? id : uuidv4(), //FOR NOW WILL LEAVE UUID
+        todo,
+        todoDescription,
+      });
+    } else {
+      updateTodo(todos);
+    }
+
+    clearCurrent();
+  };
+
+  const onClearCurrent = () => {
+    clearCurrent();
   };
 
   return (
     <Form onSubmit={onFormSubmit}>
       <Form.Field>
+<<<<<<< HEAD
         <label>Add To-do</label>
+=======
+        <label>{current === null ? "Add To-Do" : "Edit to-do"}</label>
+>>>>>>> appdone
         <input
           placeholder="name your todo"
           value={todo}
@@ -50,7 +66,11 @@ export const TodoForms = () => {
         />
       </Form.Field>
       <Form.Field>
-        <label>Add Description</label>
+        <label>
+          {current === null && current !== undefined
+            ? "Add To-Do description"
+            : "Edit to-do description"}
+        </label>
         <input
           placeholder="describe what you will be doing"
           value={todoDescription}
@@ -59,8 +79,14 @@ export const TodoForms = () => {
         />
       </Form.Field>
       <Button type="submit" basic color="blue">
-        Submit
+        {current === null && current !== undefined ? "Submit" : "Edit"}
       </Button>
+
+      {current ? (
+        <Button type="cancel" basic color="blue" onClick={onClearCurrent}>
+          Cancel Edit
+        </Button>
+      ) : undefined}
     </Form>
   );
 };

@@ -1,14 +1,18 @@
 import React, { useReducer } from "react";
+import axios from "axios";
 //import { v4 as uuidv4 } from "uuid";
 import TodoContext from "./todoContext";
 import todoReducer from "./todoReducer";
 import {
   ADD_TODO,
   DELETE_TODO,
-  SET_CURRENT,
+  GET_TODOS,
+  CLEAR_TODOS,
   CLEAR_CURRENT,
+  SET_CURRENT,
   UPDATE_TODO,
   FILTER_TODOS,
+  TODOS_ERROR,
   CLEAR_FILTER,
   SET_ALERT,
   REMOVE_ALERT,
@@ -16,47 +20,95 @@ import {
 
 const TodoState = (props) => {
   const initialState = {
-    todos: [
-      {
-        id: 1,
-        todo: "first",
-        todoDescription: "first todo",
-      },
-      {
-        id: 2,
-        todo: "second",
-        todoDescription: "",
-      },
-      {
-        id: 3,
-        todo: "third",
-        todoDescription: "third todo",
-      },
-    ],
+    todos: null,
+    current: null,
+    filtered: null,
+    error: null,
   };
 
   const [state, dispatch] = useReducer(todoReducer, initialState);
 
-  //Add todo
-  const addTodo = (todo) => {
-    // console.log(todo);
-    // todo.id = uuidv4();
-    dispatch({ type: ADD_TODO, payload: todo });
+  /************API CRUD OPERATIONS***************************************************** */
+
+  //get todos
+  const getTodos = async (todo) => {
+    try {
+      const res = await axios.get("/api/todos");
+      dispatch({ type: GET_TODOS, payload: res.data });
+    } catch (error) {
+      dispatch({ type: TODOS_ERROR, payload: error.response.msg });
+    }
   };
+
+  //Add todo
+  const addTodo = async (todo) => {
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+
+    try {
+      const res = await axios.post("/api/todos", todo, config);
+      dispatch({ type: ADD_TODO, payload: res.data });
+    } catch (error) {
+      dispatch({ type: TODOS_ERROR, payload: error.response.msg });
+    }
+  };
+
   //Delete todo
-
-  //set current todo
-
-  //clear current todo
+<<<<<<< HEAD
+=======
+  const deleteTodo = async (id) => {
+    try {
+      await axios.delete(`/api/todos/${id}`);
+      dispatch({ type: DELETE_TODO, payload: id });
+    } catch (error) {
+      dispatch({ type: TODOS_ERROR, payload: error.response.msg });
+    }
+  };
+>>>>>>> appdone
 
   //update todo
+  const updateTodo = async (todo) => {
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+
+    try {
+      const res = await axios.put(`/api/todos/${todo._id}`, todo, config);
+      dispatch({ type: UPDATE_TODO, payload: res.data });
+    } catch (error) {
+      dispatch({ type: TODOS_ERROR, payload: error.response.msg });
+    }
+  };
+
+  /************UI  OPERATIONS***************************************************** */
+
+  //set current todo
+  const setCurrent = (todo) => dispatch({ type: SET_CURRENT, payload: todo });
+
+  //clear current todo
+  const clearCurrent = () => dispatch({ type: SET_CURRENT, payload: null });
 
   //filter todo
+  const filteredTodo = (text) =>
+    dispatch({ type: FILTER_TODOS, payload: text });
 
   //clear filter
+  const clearFiltered = (text) =>
+    dispatch({ type: FILTER_TODOS, payload: null });
+
+  //clear todos
+  const clearTodos = () => {
+    dispatch({ type: CLEAR_TODOS });
+  };
 
   return (
     <TodoContext.Provider
+<<<<<<< HEAD
       value={
         {
           todo: state.todos,
@@ -64,6 +116,23 @@ const TodoState = (props) => {
         }
         // console.log(state.todos))
       }
+=======
+      value={{
+        todos: state.todos,
+        current: state.current,
+        filtered: state.filtered,
+        error: state.error,
+        addTodo,
+        deleteTodo,
+        setCurrent,
+        clearCurrent,
+        updateTodo,
+        filteredTodo,
+        clearFiltered,
+        clearTodos,
+        getTodos,
+      }}
+>>>>>>> appdone
     >
       {props.children}
     </TodoContext.Provider>

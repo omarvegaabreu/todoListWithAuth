@@ -57,8 +57,6 @@ const TodoState = (props) => {
   };
 
   //Delete todo
-<<<<<<< HEAD
-=======
   const deleteTodo = async (id) => {
     try {
       await axios.delete(`/api/todos/${id}`);
@@ -67,7 +65,6 @@ const TodoState = (props) => {
       dispatch({ type: TODOS_ERROR, payload: error.response.msg });
     }
   };
->>>>>>> appdone
 
   //update todo
   const updateTodo = async (todo) => {
@@ -108,15 +105,6 @@ const TodoState = (props) => {
 
   return (
     <TodoContext.Provider
-<<<<<<< HEAD
-      value={
-        {
-          todo: state.todos,
-          addTodo,
-        }
-        // console.log(state.todos))
-      }
-=======
       value={{
         todos: state.todos,
         current: state.current,
@@ -132,7 +120,6 @@ const TodoState = (props) => {
         clearTodos,
         getTodos,
       }}
->>>>>>> appdone
     >
       {props.children}
     </TodoContext.Provider>

@@ -53,11 +53,7 @@ export const TodoForms = () => {
   return (
     <Form onSubmit={onFormSubmit}>
       <Form.Field>
-<<<<<<< HEAD
-        <label>Add To-do</label>
-=======
         <label>{current === null ? "Add To-Do" : "Edit to-do"}</label>
->>>>>>> appdone
         <input
           placeholder="name your todo"
           value={todo}

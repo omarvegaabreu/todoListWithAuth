@@ -34,8 +34,6 @@ export default (state, action) => {
         }),
         loading: false,
       };
-<<<<<<< HEAD
-=======
     case DELETE_TODO:
       return {
         ...state,
@@ -77,7 +75,6 @@ export default (state, action) => {
         error: action.payload,
       };
     }
->>>>>>> appdone
 
     default:
       return state;

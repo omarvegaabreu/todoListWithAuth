@@ -52,25 +52,9 @@ const NavBar = ({ title, icon }) => {
   );
 
   return (
-<<<<<<< HEAD
-    <div className="navbar bg-primary">
-      <h1>
-        <icon className={icon}>{title}</icon>
-      </h1>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-      </ul>
-    </div>
-=======
     <Menu stackable className="navbar">
       {isAuthenticated ? authenticatedNav : guestNav}
     </Menu>
->>>>>>> appdone
   );
 };
 

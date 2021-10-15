@@ -29,11 +29,6 @@ const Todos = () => {
 
   return (
     <Fragment>
-<<<<<<< HEAD
-      {todo.map((todosObject) => {
-        return <TodoItem key={todosObject.id} todos={todosObject} />;
-      })}
-=======
       {todos !== null && !loading ? (
         <TransitionGroup>
           {filtered !== null
@@ -55,7 +50,6 @@ const Todos = () => {
       ) : (
         <LoadingSpinner />
       )}
->>>>>>> appdone
     </Fragment>
   );
 };

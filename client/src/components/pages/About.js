@@ -1,56 +1,49 @@
 import React from "react";
-import { Container, Divider } from "semantic-ui-react";
+import { Container, Divider, List, Segment, Header } from "semantic-ui-react";
 
 const About = () => (
   <div>
-    <Container textAlign="center">Center Aligned</Container>
-
-    <Container textAlign="justified">
+    <Header as="h2" attached="top">
+      To do with Authentication
+    </Header>
+    <Segment attached>
       <b>Application overview.</b>
-      <Divider />
       <p>
-        The application uses several technologies in order to complete our
-        vision. We will be able to: Securely log in as administrators giving the
-        application users peace of mind given that only registered users will be
-        able to access their information. Cars can be added and viewed in the
-        App allowing the user to know how many cars are in the system. The
-        payment system is completely automated; this will allow for easier and
-        faster checkout. The user will be able to notify via text, the guests
-        that the cars are ready to be picked up. The guest will get a QR code
-        notification in order to pick up the car. This is an additional security
-        feature, that will limit human error. We integrated React as the View
-        layer, MongoDB, Express.js, Node.js in the backend. Using the MVC
-        paradigm to produce a full-stack MERN application. In the client side we
-        used the React lifecycle methods to follow best practices to render our
-        application to the React Dom. Asynchronous request (AJAX) calls to
-        transport data as JSON text from the data base and several API's used in
-        the project. In the backend we used CRUD operations to manage the
-        database and also followed best practices on our server side in order to
-        make the application run smoothly and error free. #Technologies used
-        MERN stack. Bcrypt for password encryption. Twilio API to send text
-        messages. Stripe API for credit card payment. React chart.js for
-        rendering charts. QR-code-React to generate the code in the text
-        message. Bootstrap and Material Design in the HTML. SASS in our CSS
-        libraries. Open weather API to show the weather in the application.
-        Moment JS to show the times. Passport for login authentication. Node
-        mailer. SendGrid
+        To-do with Authentication is a Full stack MERN
+        (MongoDB,Express,React,NodeJS) to do list manager with React hooks,
+        context & JWT authentication. For the UI layout I used Semantic UI
+        react.
       </p>
+    </Segment>
+
+    <Divider />
+
+    <p>
+      <b>Usage:</b> Install client dependencies npm install npm client-install.
+      Mongo connection setup Edit your /config/db.js file to include the correct
+      MongoDB URI. Please note you need to create a .env file in the root of the
+      application. This file should contain:
+    </p>
+    <List.Item as="ul">
+      <List.Item as="li">
+        {" "}
+        <b>You need to provide your own credentials.</b>
+      </List.Item>
+      <List.Item as="li"> DB_USERNAME=</List.Item>
+      <List.Item as="li">DB_PASSWORD=</List.Item>
+      <List.Item as="li">DB_CLUSTER_NAME=</List.Item>
+      <List.Item as="li">JWT_SECRET=</List.Item>
+    </List.Item>
+
+    <Divider />
+
+    <Segment attached>
       <p>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-        ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et
-        magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-        ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa
-        quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-        arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
-        Nullam dictum felis eu pede link mollis pretium. Integer tincidunt. Cras
-        dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend
-        tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac,
-        enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.
-        Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean
-        imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper
-        ultricies nisi.
+        {" "}
+        Run Server npm run dev # Express & React :3000 & :5000 npm run server #
+        Express API Only :5000 npm run client # React Client Only :3000
       </p>
-    </Container>
+    </Segment>
   </div>
 );
 

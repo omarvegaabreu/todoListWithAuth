@@ -5,7 +5,7 @@ const LoadingSpinner = () => (
     <Message icon>
       <Icon name="circle notched" loading />
       <Message.Content>
-        <Message.Header>Loading</Message.Header>
+        <Message.Header>Loading...</Message.Header>
       </Message.Content>
     </Message>
   </div>

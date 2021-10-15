@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 const port = process.env.PORT || 5000;
+const path = require("path");
 
 //env config
 dotenv.config();
@@ -13,14 +14,24 @@ const mongoDB = require("./config/db");
 //database connection
 mongoDB();
 
-//middleware
+//Init middleware
 app.use(express.json({ extended: false }));
 
 //API ROUTES
-app.get("/", (req, res) => res.json({ msg: "landing page" }));
+
 app.use("/api/users", require("./routes/user"));
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/todos", require("./routes/todo"));
+
+// Serve static assets in production
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  );
+}
 
 //EXPRESS SERVER
 app.listen(port, (error) =>

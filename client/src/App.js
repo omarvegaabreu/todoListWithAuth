@@ -34,6 +34,7 @@ const App = () => {
                   <Route exact path="/about" component={About}></Route>
                   <Route exact path="/login" component={Login}></Route>
                   <Route exact path="/register" component={Register}></Route>
+                  <Route component={Home}></Route>
                 </Switch>
               </div>
             </Fragment>

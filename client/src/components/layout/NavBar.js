@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { Menu, Icon, List, Button } from "semantic-ui-react";
+import { Menu, Icon, List } from "semantic-ui-react";
 import AuthContext from "../../context/auth/authContext";
 import TodoContext from "../../context/todo/todoContext";
 

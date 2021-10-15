@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
 import AuthContext from "../../context/auth/authContext";
 import AlertContext from "../../context/alert/alertContext";
-import { Link } from "react-router-dom";
 
 const Login = (props) => {
   const alertContext = useContext(AlertContext);

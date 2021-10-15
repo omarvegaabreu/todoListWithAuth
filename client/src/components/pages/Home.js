@@ -5,7 +5,7 @@ import TodoForm from "../todos/TodoForm";
 import FilteredTodos from "../FilteredTodos";
 import AuthContext from "../../context/auth/authContext";
 import Login from "../auth/Login";
-import { Button, Divider, Form, Grid, Segment } from "semantic-ui-react";
+import { Button, Divider, Grid, Segment } from "semantic-ui-react";
 
 const Home = () => {
   const authContext = useContext(AuthContext);

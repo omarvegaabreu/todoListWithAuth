@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Divider, List, Segment, Header } from "semantic-ui-react";
+import { Divider, List, Segment, Header } from "semantic-ui-react";
 
 const About = () => (
   <div>

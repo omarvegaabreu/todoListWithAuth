@@ -8,14 +8,10 @@ import {
   DELETE_TODO,
   GET_TODOS,
   CLEAR_TODOS,
-  CLEAR_CURRENT,
   SET_CURRENT,
   UPDATE_TODO,
   FILTER_TODOS,
   TODOS_ERROR,
-  CLEAR_FILTER,
-  SET_ALERT,
-  REMOVE_ALERT,
 } from "../types";
 
 const TodoState = (props) => {

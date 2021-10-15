@@ -28,8 +28,9 @@ const Register = (props) => {
       setAlert(
         `${error}. You will be redirected to the login page.`,
         "ui red message",
-        10000
+        3000
       );
+      props.history.push("/");
       clearError();
     }
   }, [error, clearError, setAlert, isAuthenticated, props]);

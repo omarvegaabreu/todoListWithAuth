@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider, List, Segment, Header } from "semantic-ui-react";
+import { Divider, List, Segment, Header, Icon } from "semantic-ui-react";
 
 const About = () => (
   <div>
@@ -7,23 +7,44 @@ const About = () => (
       To do with Authentication
     </Header>
     <Segment attached>
-      <b>Application overview.</b>
+      <h4>Application overview</h4>
+      <List.Item as="ul">
+        <List.Icon
+          name="github"
+          size="large"
+          verticalAlign="middle"
+          color="black"
+        />
+        <span>
+          <b>Github Repo: </b>
+        </span>{" "}
+        <List.Item as="a">
+          {" "}
+          https://github.com/omarvegaabreu/todoListWithAuth
+        </List.Item>
+      </List.Item>
+      <Divider />
+
       <p>
         To-do with Authentication is a Full stack MERN
         (MongoDB,Express,React,NodeJS) to do list manager with React hooks,
         context & JWT authentication. For the UI layout I used Semantic UI
         react.
       </p>
+      <p>
+        For deployment I used Heroku, the database is running on mongoDB Atlas.
+        Sometimes API request time out in the Heroku server. If this happens,
+        refresh the page and your requests will take effect.
+      </p>
+      <p>
+        <b>Usage:</b> Install client dependencies npm install npm
+        client-install. Mongo connection setup Edit your /config/db.js file to
+        include the correct MongoDB URI. Please note you need to create a .env
+        file in the root of the application. This file should contain:
+      </p>
     </Segment>
 
     <Divider />
-
-    <p>
-      <b>Usage:</b> Install client dependencies npm install npm client-install.
-      Mongo connection setup Edit your /config/db.js file to include the correct
-      MongoDB URI. Please note you need to create a .env file in the root of the
-      application. This file should contain:
-    </p>
     <List.Item as="ul">
       <List.Item as="li">
         {" "}

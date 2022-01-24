@@ -36,7 +36,7 @@ if (process.env.NODE_ENV === "production") {
 //EXPRESS SERVER
 app.listen(port, (error) =>
   error
-    ? console.log("this is error suca " + error)
+    ? console.log("ERROR FROM EXPRESS SERVER: " + error)
     : console.log(
         `Server is listening on port ${port} as ${process.env.DB_USERNAME} `
       )

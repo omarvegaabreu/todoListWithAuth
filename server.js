@@ -18,7 +18,7 @@ mongoDB();
 app.use(express.json({ extended: false }));
 
 //API ROUTES
-
+app.use("/api/documentation", require("./routes/documentation"));
 app.use("/api/users", require("./routes/user"));
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/todos", require("./routes/todo"));

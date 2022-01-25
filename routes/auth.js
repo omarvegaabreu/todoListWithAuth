@@ -5,9 +5,9 @@ const auth = require("../middleware/auth");
 const authRouteController = require("../Controllers/authController.js");
 
 //PUBLIC ROUTE /api/auth
-router.get("/", (req, res) => res.json("API works works in heroku"));
+// router.get("/", (req, res) => res.json("API works works in heroku"));
 // .GET validate logged in user
-// router.get("/", auth, authRouteController.getUser);
+router.get("/", auth, authRouteController.getUser);
 
 //.POST once user is logged in, get user information
 router.post(

@@ -18,9 +18,19 @@ mongoDB();
 app.use(express.json({ extended: false }));
 
 //Disable CORS middleware /***DO NOT MOVE MUST BE BEFORE OF ROUTES */
-app.use(cors());
+// app.use(cors());
 
 //API ROUTES
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
 app.use("/api/users", require("./routes/user"));
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/todos", require("./routes/todo"));

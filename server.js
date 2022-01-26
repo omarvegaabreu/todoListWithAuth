@@ -4,7 +4,7 @@ const app = express();
 const dotenv = require("dotenv");
 const port = process.env.PORT || 5000;
 const path = require("path");
-
+const cors = require("cors");
 //env config
 dotenv.config();
 
@@ -18,28 +18,28 @@ mongoDB();
 app.use(express.json({ extended: false }));
 
 //cors middleware
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin,X-Requested-With",
-    "Content-Type",
-    "Accept"
-  );
-  next();
-});
-// const whitelist = ["https://zen-cori-46710b.netlify.app/"];
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-// };
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin,X-Requested-With",
+//     "Content-Type",
+//     "Accept"
+//   );
+//   next();
+// });
+const whitelist = ["https://zen-cori-46710b.netlify.app/"];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 // app.use(cors());
 // app.use((req, res, next) => {
 //   res.header("Access-Control-Allow-Origin", "*");

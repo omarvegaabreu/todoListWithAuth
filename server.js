@@ -17,55 +17,13 @@ mongoDB();
 //Init middleware
 app.use(express.json({ extended: false }));
 
-//cors middleware
-// app.use(cors());
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin,X-Requested-With",
-//     "Content-Type",
-//     "Accept"
-//   );
-//   next();
-// });
+//Disable CORS middleware /***DO NOT MOVE MUST BE BEFORE OF ROUTES */
+app.use(cors());
 
-const whitelist = ["https://zen-cori-46710b.netlify.app/"];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-};
-
-app.use(cors(corsOptions));
-// app.use(cors());
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   next();
-// });
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "https://zen-cori-46710b.netlify.app/");
-//   next();
-// });
-// res.set("Access-Control-Allow-Origin", "https://zen-cori-46710b.netlify.app/");
 //API ROUTES
-// //app.use(
-//   "/api/documentation",
-//   cors(corsOptions),
-//   require("./routes/documentation")
-// ); //to check it works
-
-app.use("/api/users", cors(corsOptions), require("./routes/user"));
-app.use("/api/auth", cors(corsOptions), require("./routes/auth"));
-app.use("/api/todos", cors(corsOptions), require("./routes/todo"));
-
-// app.use("/api/users", require("./routes/user"));
-// app.use("/api/auth", require("./routes/auth"));
-// app.use("/api/todos", require("./routes/todo"));
+app.use("/api/users", require("./routes/user"));
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/todos", require("./routes/todo"));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {

@@ -21,18 +21,16 @@ async function getUser(req, res) {
 
 async function getToken(req, res) {
   const errorObject = validationResult(req);
-  // console.log("errors array line 25 POST/API/AUTH " + { errorObject });
+
   if (!errorObject.isEmpty()) {
     return res.status(400).json({ errors: errorObject.array() });
   }
 
-  const { email, password } = req.body; //destructure req.body object
-  // console.log("email from auth line 31 " + email);
-  // console.log("password from auth line 31 " + password);
+  const { email, password } = req.body; // req.body = object
 
   try {
     let user = await User.find({ email });
-    // console.log("user auth line 35 " + user);
+
     if (!user || user.length == 0) {
       return res
         .status(400)

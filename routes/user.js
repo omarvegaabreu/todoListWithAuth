@@ -20,5 +20,4 @@ router.post(
   userController.registerUser
 );
 
-//export to server.js
 module.exports = router;

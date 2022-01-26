@@ -18,11 +18,28 @@ mongoDB();
 app.use(express.json({ extended: false }));
 
 //cors middleware
+const whitelist = ["https://zen-cori-46710b.netlify.app/"];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
+// app.use(cors());
 // app.use((req, res, next) => {
 //   res.header("Access-Control-Allow-Origin", "*");
 //   next();
 // });
-res.set("Access-Control-Allow-Origin", "https://zen-cori-46710b.netlify.app/");
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "https://zen-cori-46710b.netlify.app/");
+//   next();
+// });
+// res.set("Access-Control-Allow-Origin", "https://zen-cori-46710b.netlify.app/");
 //API ROUTES
 app.use("/api/documentation", require("./routes/documentation")); //to check it works
 app.use("/api/users", require("./routes/user"));

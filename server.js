@@ -6,6 +6,7 @@ const port = process.env.PORT || 5000;
 const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+app.use(cors());
 //env config
 dotenv.config();
 
@@ -18,14 +19,14 @@ mongoDB();
 //Init middleware
 app.use(express.json({ extended: false }));
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
 // app.use(function (req, res, next) {
 // Website you wish to allow to connect
 // res.setHeader("Access-Control-Allow-Origin", "*");

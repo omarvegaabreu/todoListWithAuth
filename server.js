@@ -23,7 +23,10 @@ app.use(express.json({ extended: false }));
 app.use(bodyParser.json()); // application/json
 //API ROUTES
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://zen-cori-46710b.netlify.app"
+  );
   res.setHeader(
     "Access-Control-Allow-Methods",
     "OPTIONS, GET, POST, PUT, PATCH, DELETE"

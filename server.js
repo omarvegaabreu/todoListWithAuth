@@ -24,6 +24,12 @@ app.use(
     origin: "*",
   })
 );
+
+app.use(
+  cors({
+    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+  })
+);
 //app.use(cors());
 // app.use(bodyParser.json()); // application/json
 //API ROUTES

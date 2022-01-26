@@ -17,6 +17,12 @@ mongoDB();
 //Init middleware
 app.use(express.json({ extended: false }));
 
+//cors middleware
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
+
 //API ROUTES
 app.use("/api/documentation", require("./routes/documentation")); //to check it works
 app.use("/api/users", require("./routes/user"));

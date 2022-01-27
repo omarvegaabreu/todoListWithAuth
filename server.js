@@ -114,9 +114,9 @@ app.use(express.json({ extended: false }));
 //   next();
 // });
 
-app.use("/api/users", require("./routes/user"));
-app.use("/api/auth", require("./routes/auth"));
-app.use("/api/todos", require("./routes/todo"));
+app.use("/api/users", cors(), require("./routes/user"));
+app.use("/api/auth", cors(), require("./routes/auth"));
+app.use("/api/todos", cors(), require("./routes/todo"));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {

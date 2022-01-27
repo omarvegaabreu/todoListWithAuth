@@ -11,6 +11,9 @@ app.use(
     origin: "*",
     methods: ["GET", "POST", "OPTIONS", "PUT", "PATCH", "DELETE"],
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
+    exposedHeaders: ["Content-Range", "X-Content-Range"],
+    maxAge: "86400",
   })
 );
 app.options("*", cors());

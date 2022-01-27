@@ -13,6 +13,7 @@ app.use(
     credentials: true,
   })
 );
+app.options("*", cors());
 //env config
 dotenv.config();
 

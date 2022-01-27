@@ -6,7 +6,13 @@ const port = process.env.PORT || 5000;
 const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "OPTIONS", "PUT", "PATCH", "DELETE"],
+    credentials: true,
+  })
+);
 //env config
 dotenv.config();
 

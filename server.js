@@ -8,7 +8,6 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 app.use(
   cors({
-    // origin: ["https://zen-cori-46710b.netlify.app/", /\.netlify\.app$/],
     origin: "*",
     methods: ["GET", "POST", "OPTIONS", "PUT", "PATCH", "DELETE"],
     credentials: true,

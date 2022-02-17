@@ -16,12 +16,13 @@ app.use(
     maxAge: "86400",
   })
 );
-app.options("*", cors());
+// app.options("*", cors());
 //env config
 dotenv.config();
 
 //import database from config folder
 const mongoDB = require("./config/db");
+const { nextTick } = require("process");
 
 //database connection
 mongoDB();

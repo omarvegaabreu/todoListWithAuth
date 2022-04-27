@@ -21,9 +21,8 @@ const Register = (props) => {
   });
 
   useEffect(() => {
-    if (isAuthenticated) {
-      props.history.push("/");
-    }
+    if (isAuthenticated) props.history.push("/");
+
     if (error === "User already exists") {
       setAlert(
         `${error}. You will be redirected to the login page.`,
